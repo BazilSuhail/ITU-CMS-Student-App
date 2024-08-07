@@ -5,7 +5,7 @@ import { View, Text, TouchableOpacity, Image, ActivityIndicator } from 'react-na
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Feather, FontAwesome } from '@expo/vector-icons'; // For icons
-import { auth, fs, st, useFirebaseAuth } from './Config/Config'; // Adjust the import path as needed
+import { auth, fs, useFirebaseAuth } from './Config/Config'; // Adjust the import path as needed
 import Home from './Components/Home'; // Adjust the path as needed
 import Courses from './Components/Courses'; // Adjust the path as needed
 
@@ -161,13 +161,15 @@ const DrawerNavigator = () => {
         headerTintColor: '#FFFFFF',
         headerTitleAlign: 'center',
         headerLeft: () => (
-          <TouchableOpacity onPress={() => navigation.toggleDrawer()} className="ml-[10px] flex flex-row">
-            <Feather name="menu" size={26} color="#FFFFFF" />
+          <View className="ml-[10px] flex flex-row">
+            <TouchableOpacity onPress={() => navigation.toggleDrawer()} >
+              <Feather name="menu" size={26} color="#FFFFFF" />
+            </TouchableOpacity>
             <Text className="text-[14px] font-medium text-white mt-auto ml-[12px]">
               <Text>Welcome, </Text>
               <Text className="font-bold text-[21px]">{`${firstName}`}</Text>
             </Text>
-          </TouchableOpacity>
+          </View>
         ),
         headerRight: () => (
           profile ? (
@@ -198,8 +200,7 @@ const DrawerNavigator = () => {
       <Drawer.Screen name="Marks" component={Marks} />
 
       <Drawer.Screen name="Profile" component={StudentProfile} />
-      
-      <Drawer.Screen name="Withdraw" component={Courses} />
+
       <Drawer.Screen name="Enrollment" component={EnrolledCourses} />
       <Drawer.Screen name="Withdraw" component={WithdrawCourses} />
     </Drawer.Navigator>
