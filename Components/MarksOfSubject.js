@@ -86,8 +86,6 @@ const MarksOfSubject = () => {
                         )}
                     />
 
-
-
                     <View className="mt-5">
                         <View className="flex-row justify-between py-3 border-b border-gray-700">
                             <Text className="text-white text-center flex-1">Total Weighted Marks:</Text>

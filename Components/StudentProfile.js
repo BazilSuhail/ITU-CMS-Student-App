@@ -51,8 +51,9 @@ const StudentProfile = () => {
 
     if (loading) {
         return (
-            <View className="flex-1 justify-center items-center bg-blue-950">
-                <ActivityIndicator size="large" color="#003F92" />
+            
+            <View className="flex justify-center items-center h-screen  bg-custom-blue p-4">
+                <ActivityIndicator size="large" color="#007bff" />
             </View>
         );
     }

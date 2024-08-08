@@ -16,6 +16,9 @@ import Attendance from './Components/Attendance'; // Adjust the path as needed C
 import Marks from './Components/Marks'; // Adjust the path as needed CheckAttendance
 import EnrolledCourses from './Components/EnrolledCourses'; // Adjust the path as needed CheckAttendance
 import WithdrawCourses from './Components/WithdrawCourses'; // Adjust the path as needed CheckAttendance
+import Feedback from './Components/Feedback'; // Adjust the path as needed CheckAttendance
+
+
 
 const Drawer = createDrawerNavigator();
 
@@ -78,7 +81,7 @@ const CustomDrawerContent = (props) => {
       <TouchableOpacity onPress={() => props.navigation.navigate('Courses')} className="flex-row items-center py-2 px-4">
         <Feather name="book" size={20} color="#E5E7EB" />
         <Text className="text-gray-200 ml-6 text-lg font-medium">Courses</Text>
-      </TouchableOpacity>      
+      </TouchableOpacity>
 
       <TouchableOpacity onPress={() => props.navigation.navigate('Attendance')} className="flex-row items-center py-2 px-4">
         <Feather name="check-circle" size={20} color="#E5E7EB" />
@@ -156,7 +159,7 @@ const DrawerNavigator = () => {
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={({ navigation }) => ({
         drawerPosition: 'left',
-        headerStyle: { backgroundColor: '#1E3A8A' },
+        headerStyle: { backgroundColor: '#172554' },
         headerTitleStyle: { fontWeight: 'bold', color: '#FFFFFF' },
         headerTintColor: '#FFFFFF',
         headerTitleAlign: 'center',
@@ -203,6 +206,10 @@ const DrawerNavigator = () => {
 
       <Drawer.Screen name="Enrollment" component={EnrolledCourses} />
       <Drawer.Screen name="Withdraw" component={WithdrawCourses} />
+      <Drawer.Screen name="Feedback" component={Feedback} />
+
+
+
     </Drawer.Navigator>
   );
 };

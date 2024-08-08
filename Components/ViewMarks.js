@@ -118,7 +118,9 @@ const ViewMarks = () => {
       <View className="h-[2px] mt-[10px] w-[100%] mx-auto bg-gray-500 mb-[18px] rounded-xl"></View>
 
       {loading ? (
-        <ActivityIndicator size="large" color="#0000ff" className="flex-1 justify-center items-center" />
+      <View className="flex justify-center items-center h-screen  bg-custom-blue p-4">
+      <ActivityIndicator size="large" color="#007bff" />
+  </View>
       ) : error ? (
         <Text className="text-red-500 text-center my-4">{`Error: ${error}`}</Text>
       ) : currentCourses.length > 0 ? (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, FlatList, ActivityIndicator, Alert, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { auth, fs, FieldValue } from '../Config/Config';
 
 const WithdrawCourses = () => {
@@ -36,6 +36,7 @@ const WithdrawCourses = () => {
                                     return {
                                         assignCourseId: courseId,
                                         courseName: courseDoc.exists ? courseDoc.data().name : 'Unknown Course',
+                                        courseHours: courseDoc.exists ? courseDoc.data().creditHours : 'Unknown',
                                         instructorName: instructorDoc.exists ? instructorDoc.data().name : 'Unknown Instructor',
                                         className: classDoc.exists ? classDoc.data().name : 'Unknown Class',
                                     };
@@ -56,6 +57,7 @@ const WithdrawCourses = () => {
                                 return {
                                     assignCourseId: courseId,
                                     courseName: courseDoc.exists ? courseDoc.data().name : 'Unknown Course',
+                                    courseHours: courseDoc.exists ? courseDoc.data().creditHours : 'Unknown',
                                     instructorName: instructorDoc.exists ? instructorDoc.data().name : 'Unknown Instructor',
                                     className: classDoc.exists ? classDoc.data().name : 'Unknown Class',
                                 };
@@ -108,108 +110,70 @@ const WithdrawCourses = () => {
         }
     };
 
-    const renderCourseItem = ({ item }) => (
-        <View style={styles.courseItem}>
-            <Text style={styles.courseName}>{item.courseName}</Text>
-            <Text style={styles.instructorName}>{item.instructorName}</Text>
-            <Text style={styles.className}>{item.className}</Text>
-            <Button
-                title="Withdraw Course"
-                onPress={() => handleWithdraw(item.assignCourseId)}
-                color="#007bff"
-            />
+    const renderCourseItem = (item) => (
+        <View key={item.assignCourseId} className="bg-blue-900 p-4 rounded-lg mb-3">
+            <Text className="text-lg font-bold text-white">{item.courseName}</Text>
+
+            <View className="flex-row justify-between items-center mt-2">
+                <Text className="text-gray-400 text-[16px] underline">{item.instructorName}</Text>
+                <View className="flex-row">
+                    <Text className="text-white">Credit.Hrs:</Text>
+                    <Text className="font-extrabold bg-white px-[6px] ml-[4px] text-blue-950 rounded-md">{item.courseHours}</Text>
+                </View>
+            </View>
+
+            <Text className="text-gray-200 font-bold mt-[12px]">{item.className}</Text>
+
+            <TouchableOpacity onPress={() => handleWithdraw(item.assignCourseId)} className="bg-blue-950 py-3 rounded-lg mt-3">
+                <Text className="text-white font-bold text-center">Withdraw Course</Text>
+            </TouchableOpacity>
         </View>
     );
 
     if (loading) {
         return (
-            <View style={styles.container}>
+            <View className="flex justify-center items-center h-screen  bg-custom-blue p-4">
                 <ActivityIndicator size="large" color="#007bff" />
             </View>
         );
     }
 
     return (
-        <View className="flex-1 bg-custom-blue p-4">
-
+        <ScrollView className="flex bg-custom-blue p-4">
             <Text className="text-2xl text-white font-bold">Marks</Text>
             <View className="h-[2px] mt-[10px] w-[100%] mx-auto bg-gray-500 mb-[18px] rounded-xl"></View>
 
-
-            <Text style={styles.subtitle}>Courses Enrolled</Text>
+            <Text className="text-xl font-bold text-white my-4">Courses Enrolled</Text>
             {currentCoursesData.length > 0 ? (
-                <FlatList
-                    data={currentCoursesData}
-                    renderItem={renderCourseItem}
-                    keyExtractor={item => item.assignCourseId}
-                />
+                currentCoursesData.map(course => renderCourseItem(course))
             ) : (
-                <Text style={styles.message}>No current courses found.</Text>
+                <Text className="text-red-300 p-3 border-2 border-red-200 rounded-lg text-center my-4">No current courses found.</Text>
             )}
 
-            <Text style={styles.subtitle}>Courses Applied For Withdraw</Text>
-            {withdrawCoursesData.length > 0 ? (
-                <FlatList
-                    data={withdrawCoursesData}
-                    renderItem={({ item }) => (
-                        <View style={styles.courseItem}>
-                            <Text style={styles.courseName}>{item.courseName}</Text>
-                            <Text style={styles.instructorName}>{item.instructorName}</Text>
-                            <Text style={styles.className}>{item.className}</Text>
+            <View className="mb-[35px]">
+                <Text className="text-xl font-bold text-white my-4">Courses Applied For Withdraw</Text>
+                {withdrawCoursesData.length > 0 ? (
+                    withdrawCoursesData.map(course => (
+                        <View key={course.assignCourseId} className="bg-blue-950 p-4 rounded-lg mb-3">
+                            <Text className="text-lg font-bold text-white">{course.courseName}</Text>
+
+                            <View className="flex-row justify-between items-center mt-2">
+                                <Text className="text-gray-400 text-[16px] underline">{course.instructorName}</Text>
+                                <View className="flex-row">
+                                    <Text className="text-white">Credit.Hrs:</Text>
+                                    <Text className="font-extrabold bg-white px-[6px] ml-[4px] text-blue-950 rounded-md">{course.courseHours}</Text>
+                                </View>
+                            </View>
+
+                            <Text className="text-gray-200 font-bold mt-[12px]">{course.className}</Text>
                         </View>
-                    )}
-                    keyExtractor={item => item.assignCourseId}
-                />
-            ) : (
-                <Text style={styles.message}>No courses applied for withdraw.</Text>
-            )}
-        </View>
+                    ))
+                ) : (
+                    <Text className="text-red-300 p-3 border-2 border-red-200 rounded-lg text-center my-4">No courses applied for withdraw.</Text>
+                )}
+            </View>
+        </ScrollView>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 16,
-        backgroundColor: '#f5f5f5',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#007bff',
-        marginBottom: 16,
-    },
-    subtitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#007bff',
-        marginVertical: 8,
-    },
-    courseItem: {
-        backgroundColor: '#fff',
-        padding: 16,
-        borderRadius: 8,
-        marginBottom: 8,
-        elevation: 1,
-    },
-    courseName: {
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    instructorName: {
-        fontSize: 14,
-        color: '#666',
-    },
-    className: {
-        fontSize: 14,
-        color: '#666',
-    },
-    message: {
-        fontSize: 16,
-        color: '#ff0000',
-        textAlign: 'center',
-        marginTop: 16,
-    },
-});
 
 export default WithdrawCourses;
