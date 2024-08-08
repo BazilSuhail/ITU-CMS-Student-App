@@ -50,7 +50,7 @@ const MarksOfSubject = () => {
                         <View className="bg-blue-900 flex-row items-center p-3 rounded-lg w-[49%] ">
                             <View className="flex-row items-center">
                                 <Ionicons name="school-outline" size={38} color="white" />
-                                <View className="h-[40px] mx-[10px] w-[3px] bg-white "></View>
+                                <View className="h-[40px] mx-[10px] w-[2px] bg-white "></View>
                             </View>
                             <View className="flex ml-[5px] justify-center items-center">
                                 <Text className="text-gray-200 font-bold text-[14px] mb-[2px]">Total Marks</Text>
@@ -61,7 +61,7 @@ const MarksOfSubject = () => {
                         <View className="bg-blue-900 flex-row items-center p-3 rounded-lg w-[49%] ">
                             <View className="flex-row items-center">
                                 <MaterialIcons name="grade" size={38} color="white" />
-                                <View className="h-[40px] mx-[10px] w-[3px] bg-white "></View>
+                                <View className="h-[40px] mx-[10px] w-[2px] bg-white "></View>
                             </View>
                             <View className="flex ml-[22px] justify-center items-center">
                                 <Text className="text-gray-200 font-bold text-[14px] mb-[2px]">Grade</Text>

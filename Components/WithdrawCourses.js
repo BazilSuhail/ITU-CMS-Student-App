@@ -130,8 +130,11 @@ const WithdrawCourses = () => {
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Withdraw Courses</Text>
+        <View className="flex-1 bg-custom-blue p-4">
+
+            <Text className="text-2xl text-white font-bold">Marks</Text>
+            <View className="h-[2px] mt-[10px] w-[100%] mx-auto bg-gray-500 mb-[18px] rounded-xl"></View>
+
 
             <Text style={styles.subtitle}>Courses Enrolled</Text>
             {currentCoursesData.length > 0 ? (

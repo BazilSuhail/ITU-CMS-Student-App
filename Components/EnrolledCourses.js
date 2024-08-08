@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, ActivityIndicator, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Button, ActivityIndicator, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import { auth, fs } from '../Config/Config'; // Ensure to configure Firebase properly
 
 const EnrolledCourses = () => {
@@ -92,91 +92,54 @@ const EnrolledCourses = () => {
   const filteredCourses = courses.filter(course => !completedCourses.includes(course.courseName));
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Available Courses</Text>
+    <View className="flex-1 p-4 bg-custom-blue ">
+
+      <Text className="text-2xl text-white font-bold">Available Courses</Text>
+      <View className="h-[2px] mt-[10px] w-[100%] mx-auto bg-gray-500 mb-[18px] rounded-xl"></View>
 
       {loading ? (
         <ActivityIndicator size="large" color="#003f72" />
       ) : error ? (
-        <Text style={styles.error}>Error: {error}</Text>
+        <Text className="text-red-500 text-center mb-4">Error: {error}</Text>
       ) : (
-        <FlatList
-          data={filteredCourses}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View style={styles.courseContainer}>
-              <Text style={styles.courseName}>{item.courseName}</Text>
-              <Text style={styles.className}>{item.className}</Text>
-              <Text style={styles.instructorName}>{item.instructorName}</Text>
-              {enrolledCourses.includes(item.id) ? (
-                <Button title="Enrolled" color="gray" disabled />
-              ) : (
-                <TouchableOpacity
-                  style={styles.enrollButton}
-                  onPress={() => handleEnroll(item.id)}
-                >
-                  <Text style={styles.enrollButtonText}>Enroll</Text>
-                </TouchableOpacity>
-              )}
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} className="mx-[7px] mt-[18px]">
+          <View>
+            {/* Header Row */}
+            <View className="flex-row bg-blue-500 py-2 rounded-t-lg">
+              <Text className="flex-1 w-[170px] text-center text-white font-bold">Course Name</Text>
+              <Text className="flex-1 text-center w-[90px] text-white font-bold">Class_id</Text>
+              <Text className="flex-1 text-center w-[150px] text-white font-bold">Instructor Name</Text>
+              <Text className="flex-1 text-center w-[130px] text-white font-bold">Action</Text>
             </View>
-          )}
-        />
+
+            {/* Course Details */}
+            <View>
+              {filteredCourses.map((item) => (
+                <View key={item.id} className="flex-row border-b bg-blue-950 border-gray-600 py-2 px-4">
+                  <Text className="text-center w-[150px] font-bold my-auto text-white px-2">{item.courseName}</Text>
+                  <Text className="text-center w-[80px] mx-[15px] font-bold my-auto h-[22px] bg-blue-100 rounded-lg text-blue-950">{item.className}</Text>
+                  <Text className="text-center w-[140px] font-semibold my-auto text-white px-2">{item.instructorName}</Text>
+                  <View className="text-center w-[120px] font-medium my-auto text-white px-2">
+                    {enrolledCourses.includes(item.id) ? (
+                      <TouchableOpacity className="bg-gray-200 p-2 rounded-md" >
+                        <Text className="text-gray-400 font-bold text-center">Applied</Text>
+                      </TouchableOpacity>
+                    ) : (
+                      <TouchableOpacity onPress={() => handleEnroll(item.id)}
+                        className="bg-blue-700 p-2 rounded-lg"
+                      >
+                        <Text className="text-white font-bold text-center">Enroll</Text>
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                </View>
+              ))}
+            </View>
+          </View>
+        </ScrollView>
       )}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: '#f0f0f0',
-  },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 10,
-  },
-  error: {
-    color: 'red',
-    textAlign: 'center',
-    marginVertical: 20,
-  },
-  courseContainer: {
-    marginVertical: 10,
-    padding: 15,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 3,
-  },
-  courseName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  className: {
-    fontSize: 16,
-    color: '#007bff',
-  },
-  instructorName: {
-    fontSize: 16,
-    color: '#333',
-  },
-  enrollButton: {
-    marginTop: 10,
-    backgroundColor: '#003f72',
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  enrollButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-});
 
 export default EnrolledCourses;
