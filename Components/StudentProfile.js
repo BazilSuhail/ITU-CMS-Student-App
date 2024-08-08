@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator,Image, ScrollView } from 'react-native';
+import { View, Text, ActivityIndicator, Image, ScrollView } from 'react-native';
 import { auth, fs } from '../Config/Config'; // Adjust the path as needed
 
 const StudentProfile = () => {
@@ -76,85 +76,117 @@ const StudentProfile = () => {
     }
 
     return (
-        <ScrollView className="flex-1 bg-blue-950 p-4">
-            <Text className="text-2xl font-bold text-center text-blue-300 mb-2">
-                Student Profile
-            </Text>
-            <View className="w-full h-0.5 bg-blue-300 mb-4 self-center" />
-            <Image
-className="my-[15px]"
-                source={{ uri: userData.profileUrl }}
-                style={{ width: 130, height: 130, borderRadius: 100, marginRight: 10 }}
-            />
-            <View className="p-[4px] mb-5">
-                <Text className="bg-blue-800 text-white p-2 text-lg font-bold rounded-lg">
+        <ScrollView className="flex-1 bg-custom-blue p-1 py-4">
+
+            <View className="flex justify-center pl-[5px]">
+                <Image
+                    source={{ uri: userData.profileUrl }}
+                    className="w-[160px] h-[160px] rounded-full"
+                />
+                <View className="">
+                    <Text className="text-white text-4xl font-bold mt-4">{userData.name}</Text>
+                    <Text className="text-gray-200 underline ml-[5px] pt-[5px] font-medium text-sm">{userData.email}</Text>
+                </View>
+            </View>
+
+            <View className="h-[2px] mt-[25px] w-[90%] mx-auto bg-gray-500 mb-[25px] rounded-xl"></View>
+
+            <View className="py-[4px] mb-5">
+                <Text className="underline text-gray-200 py-2 ml-[5px] text-xl font-bold rounded-lg">
                     Academic Information:
                 </Text>
                 <View className="flex flex-wrap  mt-2">
-                    <View className="bg-blue-800 w-[100%] p-4 rounded-lg mb-2 flex-1">
-                        <Text className="text-white mb-1">Roll Number:</Text>
-                        <Text className="text-2xl text-white">{userData.rollNumber}</Text>
+
+                    <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
+                        <View className="bg-blue-950 p-3 rounded-2xl w-[48%]">
+                            <Text className="text-sm text-gray-400 mb-[7px] font-bold">Rollnumber:</Text>
+                            <Text className="text-blue-100 font-semibold text-xl">{userData.rollNumber}</Text>
+                        </View>
+                        <View className="bg-blue-950 p-3 rounded-2xl w-[48%]">
+                            <Text className="text-sm text-gray-400 mb-[7px] font-bold">Batch:</Text>
+                            <Text className="text-blue-100 font-semibold text-2xl">{userData.batch}</Text>
+                        </View>
                     </View>
-                    <View className="bg-blue-800 p-4 rounded-lg mb-2 flex-1">
-                        <Text className="text-white mb-1">Email:</Text>
-                        <Text className="text-2xl text-white">{userData.email}</Text>
+
+                    <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
+                        <View className="bg-blue-950 p-3 rounded-2xl w-[48%]">
+                            <Text className="text-sm text-gray-400 mb-[7px] font-bold">Semester:</Text>
+                            <Text className="text-blue-100 font-semibold text-2xl">{userData.semester}</Text>
+                        </View>
+                        <View className="bg-blue-950 p-3 rounded-2xl w-[48%]">
+                            <Text className="text-sm text-gray-400 mb-[7px] font-bold">Class:</Text>
+                            <Text className="text-blue-100 font-semibold text-2xl">{className}</Text>
+                        </View>
                     </View>
-                    <View className="bg-blue-800 p-4 rounded-lg mb-2 flex-1">
-                        <Text className="text-white mb-1">Batch:</Text>
-                        <Text className="text-2xl text-white">{userData.batch}</Text>
-                    </View>
-                    <View className="bg-blue-800 p-4 rounded-lg mb-2 flex-1">
-                        <Text className="text-white mb-1">Semester:</Text>
-                        <Text className="text-2xl text-white">{userData.semester}</Text>
-                    </View>
-                    <View className="bg-blue-800 p-4 rounded-lg mb-2 flex-1">
-                        <Text className="text-white mb-1">Degree Program:</Text>
-                        <Text className="text-xl text-white">{userData.degreeProgram}</Text>
-                    </View>
-                    <View className="bg-blue-800 p-4 rounded-lg mb-2 flex-1">
-                        <Text className="text-white mb-1">Class:</Text>
-                        <Text className="text-2xl text-white">{className}</Text>
+
+                    <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
+                        <View className="bg-blue-950 p-3 rounded-2xl w-full">
+                            <Text className="text-sm text-gray-400 mb-[7px] font-bold">Degree Program:</Text>
+                            <Text className="text-blue-100 font-semibold text-2xl">{userData.degreeProgram}</Text>
+                        </View>
                     </View>
                 </View>
 
-                <Text className="bg-blue-800 text-white p-2 text-lg font-bold rounded-lg">
+                
+            <View className="h-[2px] mt-[25px] w-[90%] mx-auto bg-gray-500 mb-[25px] rounded-xl"></View>
+
+
+                <Text className="underline text-gray-200 py-2 ml-[5px] text-xl font-bold rounded-lg">
                     Personal Information:
                 </Text>
                 <View className="flex flex-wrap mt-2">
-                    <View className="bg-gray-800 p-4 rounded-lg mb-2 flex-1">
-                        <Text className="text-white mb-1">Name:</Text>
-                        <Text className="text-2xl text-white">{userData.name}</Text>
+                    <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
+                        <View className="bg-blue-900 p-3 rounded-2xl w-full">
+                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Full Name:</Text>
+                            <Text className="text-white font-semibold text-2xl">{userData.name}</Text>
+                        </View>
                     </View>
-                    <View className="bg-gray-800 p-4 rounded-lg mb-2 flex-1">
-                        <Text className="text-white mb-1">Father's Name:</Text>
-                        <Text className="text-2xl text-white">{userData.fatherName}</Text>
+
+                    <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
+                        <View className="bg-blue-900 p-3 rounded-2xl w-full">
+                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Father Name:</Text>
+                            <Text className="text-white font-semibold text-2xl">{userData.fatherName}</Text>
+                        </View>
                     </View>
-                    <View className="bg-gray-800 p-4 rounded-lg mb-2 flex-1">
-                        <Text className="text-white mb-1">Gender:</Text>
-                        <Text className="text-2xl text-white">{userData.gender}</Text>
+
+                    <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
+                        <View className="bg-blue-900 p-3 rounded-2xl w-[48%]">
+                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Gender:</Text>
+                            <Text className="text-white font-semibold text-xl">{userData.gender}</Text>
+                        </View>
+                        <View className="bg-blue-900 p-3 rounded-2xl w-[48%]">
+                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Blood Group:</Text>
+                            <Text className="text-white font-semibold text-2xl">{userData.bloodGroup}</Text>
+                        </View>
                     </View>
-                    <View className="bg-gray-800 p-4 rounded-lg mb-2 flex-1">
-                        <Text className="text-white mb-1">City:</Text>
-                        <Text className="text-2xl text-white">{userData.city}</Text>
+
+                    <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
+                        <View className="bg-blue-900 p-3 rounded-2xl w-[48%]">
+                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">City:</Text>
+                            <Text className="text-white font-semibold text-xl">{userData.city}</Text>
+                        </View>
+                        <View className="bg-blue-900 p-3 rounded-2xl w-[48%]">
+                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Nationality:</Text>
+                            <Text className="text-white font-semibold text-2xl">{userData.nationality}</Text>
+                        </View>
                     </View>
-                    <View className="bg-gray-800 p-4 rounded-lg mb-2 flex-1">
-                        <Text className="text-white mb-1">Country:</Text>
-                        <Text className="text-2xl text-white">{userData.country}</Text>
+
+                    <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
+                        <View className="bg-gray-700 p-3 rounded-2xl w-full">
+                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Current Address:</Text>
+                            <Text className="text-white font-semibold text-lg">{userData.currentAddress}</Text>
+                        </View>
                     </View>
-                    <View className="bg-gray-800 p-4 rounded-lg mb-2 flex-1">
-                        <Text className="text-white mb-1">Nationality:</Text>
-                        <Text className="text-2xl text-white">{userData.nationality}</Text>
+
+                    <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
+                        <View className="bg-gray-700 p-3 rounded-2xl w-full">
+                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Permanent Address:</Text>
+                            <Text className="text-white font-semibold text-lg">{userData.permanentAddress}</Text>
+                        </View>
                     </View>
+
                 </View>
 
-                <View className="bg-blue-800 p-2 rounded-lg mb-2 flex-row items-center">
-                    <Text className="text-white text-sm">Current Address:</Text>
-                    <Text className="text-white text-lg ml-2">{userData.currentAddress}</Text>
-                </View>
-                <View className="bg-blue-800 p-2 rounded-lg mb-2 flex-row items-center">
-                    <Text className="text-white text-sm">Permanent Address:</Text>
-                    <Text className="text-white text-lg ml-2">{userData.permanentAddress}</Text>
-                </View>
             </View>
         </ScrollView>
     );
