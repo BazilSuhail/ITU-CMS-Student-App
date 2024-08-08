@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, FlatList } from 'react-native';
+import { View, Text, ActivityIndicator, FlatList } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { auth, fs } from '../Config/Config';
 
@@ -65,85 +65,74 @@ const StudentAttendanceDetails = () => {
   const attendancePercentage = totalDays > 0 ? ((daysPresent / totalDays) * 100).toFixed(2) : 0;
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Attendance Record</Text>
+    <View className="flex-1 bg-custom-blue p-4">
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : error ? (
-        <Text style={styles.error}>Error: {error}</Text>
+        <Text className="text-red-500 text-center my-4">
+          Error: {error}
+        </Text>
       ) : (
         <View>
-          <View style={styles.summary}>
-            <Text style={styles.summaryText}>Total Days: {totalDays}</Text>
-            <Text style={styles.summaryText}>Days Present: {daysPresent}</Text>
-            <Text style={styles.summaryText}>Days Absent: {totalDays - daysPresent}</Text>
-            <Text style={styles.summaryText}>Attendance %: {attendancePercentage}%</Text>
+          <View className="mb-4">
+
+            <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
+              <View className="bg-blue-900 p-3 rounded-2xl w-[48%]">
+                <Text className="text-sm bg-blue-950 rounded-lg text-blue-500 text-center py-[5px] mb-[7px] font-bold">Total Days</Text>
+                <Text className="text-white text-center font-semibold text-3xl">{totalDays}</Text>
+              </View>
+              <View className="bg-blue-950 p-3 rounded-2xl w-[48%]">
+                <Text className="text-sm bg-green-950 rounded-lg text-green-500 text-center py-[5px] mb-[7px] font-bold">Days Present</Text>
+                <Text className="text-white text-center font-semibold text-3xl">{daysPresent}</Text>
+              </View>
+            </View>
+
+
+            <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
+              <View className="bg-blue-950 p-3 rounded-2xl w-[48%]">
+                <Text className="text-sm bg-red-950 rounded-lg text-red-500 text-center py-[5px] mb-[7px] font-bold">Days Absent</Text>
+                <Text className="text-white text-center font-semibold text-3xl">{totalDays - daysPresent}</Text>
+              </View>
+              <View className="bg-blue-900 p-3 rounded-2xl w-[48%]">
+                <Text className="text-sm bg-blue-800 rounded-lg text-blue-100 text-center py-[5px] mb-[7px] font-bold">Overall Attendance %</Text>
+                <Text className="text-white text-center font-semibold text-3xl">{attendancePercentage}%</Text>
+              </View>
+            </View>
           </View>
           {attendanceRecords.length > 0 ? (
-            <FlatList
-              data={attendanceRecords}
-              keyExtractor={(item) => item.date}
-              renderItem={({ item }) => (
-                <View style={styles.recordItem}>
-                  <Text style={styles.recordDate}>{item.date}</Text>
-                  <Text style={[styles.recordStatus, item.records[currentUser.uid] ? styles.present : styles.absent]}>
-                    {item.records[currentUser.uid] ? 'Present' : 'Absent'}
-                  </Text>
-                </View>
-              )}
-            />
+
+                <View>
+                      <View className="flex-row bg-blue-500 py-2 rounded-t-lg">
+          <Text className="flex-1 w-[170px] text-center text-white font-bold">Date</Text>
+          <Text className="flex-1 text-center w-[90px] text-white font-bold">Status</Text> 
+        </View>
+
+              <FlatList
+                data={attendanceRecords}
+                keyExtractor={(item) => item.date}
+                renderItem={({ item }) => (
+                  <View className="flex-row py-2 rounded-b-lg bg-blue-950 text-white">
+                    <Text  className="text-center w-[170px] font-medium my-auto text-white px-2">{item.date}</Text>
+                    <Text
+                      className={`text-lg p-1 w-[100px] mx-auto rounded-lg font-semibold text-center ${item.records[currentUser.uid] ? 'bg-green-800 text-white' : 'bg-red-800 text-white'
+                        }`}
+                    >
+                      {item.records[currentUser.uid] ? 'Present' : 'Absent'}
+                    </Text>
+                  </View>
+                    )}
+                    
+                    
+              />
+            </View>
+
           ) : (
-            <Text style={styles.error}>No attendance records found.</Text>
+            <Text className="text-red-500 text-center my-4">No attendance records found.</Text>
           )}
         </View>
       )}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 16,
-  },
-  error: {
-    color: 'red',
-    textAlign: 'center',
-    marginVertical: 16,
-  },
-  summary: {
-    marginBottom: 16,
-  },
-  summaryText: {
-    fontSize: 18,
-    marginVertical: 4,
-  },
-  recordItem: {
-    marginBottom: 16,
-  },
-  recordDate: {
-    fontSize: 18,
-  },
-  recordStatus: {
-    fontSize: 18,
-    padding: 8,
-    borderRadius: 8,
-    textAlign: 'center',
-  },
-  present: {
-    backgroundColor: 'green',
-    color: 'white',
-  },
-  absent: {
-    backgroundColor: 'red',
-    color: 'white',
-  },
-});
 
 export default StudentAttendanceDetails;

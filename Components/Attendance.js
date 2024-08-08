@@ -20,7 +20,13 @@ const Attendance = () => {
             <Stack.Screen
                 name="StudentAttendanceDetails"
                 component={StudentAttendanceDetails}
-                options={{ title: 'Attendance Details' }}
+                options={({ route }) => ({
+                    title: route.params?.courseName || 'Attendance Detials', // Fallback title
+                    headerStyle: {
+                        backgroundColor: '#001433', // Custom background color for this screen
+                    },
+                    headerTintColor: '#FFFFFF', // Custom text color for this screen
+                })}
             />
         </Stack.Navigator>
     );

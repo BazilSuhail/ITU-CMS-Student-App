@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, ActivityIndicator, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { auth, fs } from '../Config/Config';
 
@@ -37,6 +37,7 @@ const CheckAttendance = () => {
                   return {
                     assignCourseId: courseId,
                     courseName: courseDoc.exists ? courseDoc.data().name : 'Unknown',
+                    courseHours: courseDoc.exists ? courseDoc.data().creditHours : 'Unknown',
                     className: classDoc.exists ? classDoc.data().name : 'Unknown',
                     instructorName: instructorDoc.exists ? instructorDoc.data().name : 'Unknown',
                   };
@@ -67,7 +68,11 @@ const CheckAttendance = () => {
   };
 
   return (
-    <View className="flex-1 p-4"> 
+    <View className="flex-1 bg-custom-blue p-4"> 
+      
+      <Text className="text-2xl text-white font-bold">Attendance Details</Text>
+      <View className="h-[2px] mt-[10px] w-[100%] mx-auto bg-gray-500 mb-[18px] rounded-xl"></View>
+
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : error ? (
@@ -76,20 +81,30 @@ const CheckAttendance = () => {
         </Text>
       ) : (
         <FlatList
-          data={enrolledCourses}
-          keyExtractor={(item) => item.assignCourseId}
-          renderItem={({ item }) => (
-            <View className="mb-4">
-              <Text className="text-lg font-bold">{item.courseName}</Text>
-              <Text className="text-base">{item.className}</Text>
-              <Text className="text-base mb-2">{item.instructorName}</Text>
-              <Button
-                title="View Attendance"
-                onPress={() => handleViewAttendance(item.assignCourseId)}
-              />
+        data={enrolledCourses}
+        keyExtractor={item => item.assignCourseId}
+        renderItem={({ item }) => (
+          <View className="bg-blue-900 p-4 rounded-lg mb-3">
+            <Text className="text-lg font-bold text-white">{item.courseName}</Text>
+
+            <View className="flex-row justify-between items-center mt-2">
+              <Text className="text-gray-400 text-[16px]  underline ">{item.instructorName}</Text>
+              <View className="flex-row">
+                <Text className="text-white "> Credit.Hrs: </Text>
+                <Text className="font-extrabold bg-white px-[6px] ml-[4px] text-blue-950 rounded-md ">{item.courseHours}</Text>
+              </View>
             </View>
-          )}
-        />
+
+            <Text className="text-gray-200 fomt-bold mt-[12px] ">{item.className}</Text>
+            <TouchableOpacity
+              onPress={() => handleViewAttendance(item.assignCourseId)}
+              className="bg-blue-950 p-2 rounded-lg mt-3"
+            >
+              <Text className="text-white font-bold text-center">View Attendance</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      />
       )}
     </View>
   );
