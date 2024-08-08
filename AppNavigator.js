@@ -197,18 +197,15 @@ const DrawerNavigator = () => {
     >
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Courses" component={Courses} />
+      <Drawer.Screen name="Profile" component={StudentProfile} />
 
       <Drawer.Screen name="Attendance" component={Attendance} />
-
       <Drawer.Screen name="Marks" component={Marks} />
-
-      <Drawer.Screen name="Profile" component={StudentProfile} />
 
       <Drawer.Screen name="Enrollment" component={EnrolledCourses} />
       <Drawer.Screen name="Withdraw" component={WithdrawCourses} />
+      
       <Drawer.Screen name="Feedback" component={Feedback} />
-
-
 
     </Drawer.Navigator>
   );

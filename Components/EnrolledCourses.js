@@ -98,7 +98,9 @@ const EnrolledCourses = () => {
       <View className="h-[2px] mt-[10px] w-[100%] mx-auto bg-gray-500 mb-[18px] rounded-xl"></View>
 
       {loading ? (
-        <ActivityIndicator size="large" color="#003f72" />
+        <View className="flex-1 justify-center items-center">
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
       ) : error ? (
         <Text className="text-red-500 text-center mb-4">Error: {error}</Text>
       ) : (

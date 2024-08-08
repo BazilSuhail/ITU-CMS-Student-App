@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, ScrollView, ActivityIndicator } from 'react-native';
-import { auth, fs } from '../Config/Config'; // Adjust the import path as needed
+import { auth, fs } from '../Config/Config';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
+
+import { Ionicons } from '@expo/vector-icons';
+
 
 const Home = () => {
   const [userData, setUserData] = useState(null);
@@ -125,21 +129,21 @@ const Home = () => {
           <Text className="text-green-500 bg-green-950 rounded-lg w-[150px] text-center mb-[15px] text-lg font-bold">
             Upcoming Class
           </Text>
-          <View className="bg-green-950 shadow-xl shadow-green-500 rounded-xl py-3 px-4">
+          <View className="bg-blue-900 shadow-xl shadow-blue-500 rounded-xl py-3 px-4">
             <View className="flex flex-row items-center justify-between">
-              <Text className="text-white font-bold mb-[5px] text-[30px]">{nextClass.course}</Text>
+              <Text className="text-white font-bold mb-[5px] text-[25px]">{nextClass.course}</Text>
               <AntDesign name="clockcircleo" size={28} color="white" />
             </View>
             <View className="h-[2px] w-[100%] mt-[8px] mx-auto bg-green-100 "></View>
             <View>
               <Text className="text-gray-200 font-medium ml-[2px] mt-[8px] w-[150px] underline underline-offset-8">{nextClass.instructor}</Text>
             </View>
-            <View className="bg-green-950 rounded-md mt-[9px] w-[150px]">
-              <Text className="text-gray-200 py-[5px] font-bold px-[8px]"><Text className="font-medium text-green-500">Venue:</Text>  {nextClass.venue}</Text>
+            <View className="bg-blue-950 rounded-md mt-[5px] w-[160px]">
+              <Text className="text-gray-200 py-[3px] font-bold px-[8px]"><Text className="font-medium text-blue-200">Venue:</Text>  {nextClass.venue}</Text>
             </View>
             <View className="flex flex-row items-center py-[5px] justify-between">
-              <Text className="text-green-200 font-bold mb-[5px] text-md"><Text className="text-lg text-white">{nextClass.day} | </Text>{nextClass.date}</Text>
-              <Text className="text-green-50 font-bold mb-[5px] text-lg">{nextClass.time}</Text>
+              <Text className="text-blue-200 font-bold mb-[5px] text-md"><Text className="text-lg text-white">{nextClass.day} | </Text>{nextClass.date}</Text>
+              <Text className="text-blue-50 font-bold mb-[5px] text-lg">{nextClass.time}</Text>
             </View>
           </View>
         </View>
@@ -154,21 +158,21 @@ const Home = () => {
           <Text className="text-yellow-500 mt-[35px] bg-yellow-950 rounded-lg w-[200px] text-center mb-[15px] text-lg font-bold">
             Next Upcoming Class
           </Text>
-          <View className="bg-yellow-950 shadow-lg shadow-yellow-200 rounded-xl py-3 px-4">
+          <View className="bg-blue-950 shadow-lg shadow-blue-200 rounded-xl py-3 px-4">
             <View className="flex flex-row items-center justify-between">
-              <Text className="text-white font-bold mb-[5px] text-[30px]">{secondNextClass.course}</Text>
+              <Text className="text-white font-bold mb-[5px] text-[25px]">{secondNextClass.course}</Text>
               <AntDesign name="clockcircleo" size={28} color="white" />
             </View>
             <View className="h-[2px] w-[100%] mt-[8px] mx-auto bg-green-100 "></View>
             <View>
               <Text className="text-gray-200 font-medium ml-[2px] mt-[8px] underline underline-offset-8">{secondNextClass.instructor}</Text>
             </View>
-            <View className="bg-yellow-950 rounded-md mt-[9px] w-[170px]">
-              <Text className="text-gray-200 py-[5px] font-bold pl-[8px]"><Text className="font-medium text-yellow-500">Venue:</Text>  {secondNextClass.venue}</Text>
+            <View className="bg-blue-700 rounded-md mt-[5px] w-[160px]">
+              <Text className="text-gray-200 py-[3px] font-bold pl-[8px]"><Text className="font-medium text-blue-100">Venue:</Text>  {secondNextClass.venue}</Text>
             </View>
             <View className="flex flex-row items-center py-[5px] justify-between">
-              <Text className="text-yellow-200 font-bold mb-[5px] text-md"><Text className="text-lg text-white">{secondNextClass.day} | </Text>{secondNextClass.date}</Text>
-              <Text className="text-yellow-50 font-bold mb-[5px] text-lg">{secondNextClass.time}</Text>
+              <Text className="text-blue-200 font-bold mb-[5px] text-md"><Text className="text-lg text-white">{secondNextClass.day} | </Text>{secondNextClass.date}</Text>
+              <Text className="text-blue-50 font-bold mb-[5px] text-lg">{secondNextClass.time}</Text>
             </View>
           </View>
         </View>
@@ -178,28 +182,54 @@ const Home = () => {
         </View>
       )}
 
-      <View className="w-[100%] mt-[35px] flex flex-row justify-center space-x-2">
-        <View className="bg-blue-900 p-3 rounded-2xl w-[45%]">
-          <Text className="text-sm text-gray-300 font-bold">No. of Courses Enrolled</Text>
-          <Text className="text-blue-100 font-extrabold ml-[15px] text-[50px]">{userData.enrolledCourses.length}</Text>
+      <View className="flex-row mt-[35px] justify-center space-x-4 mb-1">
+        <View className="bg-custom-card-blue flex-row items-center px-3 py-5 rounded-lg w-[45%] ">
+          <View className="flex-row items-center">
+          <FontAwesome5 name="calendar-alt" size={25} color="white" /> 
+            <View className="h-[45px] mx-[10px] w-[2px] bg-white "></View>
+          </View>
+          <View className="flex ml-[10px] items-center">
+            <Text className="text-gray-400 font-bold text-[12px] mb-[2px]">Current Semester</Text>
+            <Text className="text-white text-[32px] font-bold ">{userData.semester}</Text>
+          </View>
         </View>
 
-        <View className="bg-blue-950 p-3 rounded-2xl w-[45%]">
-          <Text className="text-sm text-gray-300 font-bold">Current Semester</Text>
-          <Text className="text-blue-100 font-extrabold ml-[15px] text-[50px]">{userData.semester}</Text>
+        <View className="bg-custom-card-blue flex-row items-center py-5 px-3 rounded-lg w-[45%] ">
+          <View className="flex-row items-center">
+          <MaterialIcons name="class" size={25} color="white" />
+            <View className="h-[45px] mx-[10px] w-[2px] bg-white "></View>
+          </View>
+          <View className="flex ml-[10px] items-center">
+            <Text className="text-gray-400 font-bold text-[12px] mb-[2px]">Courses Enrolled</Text>
+            <Text className="text-white text-[32px] font-bold ">{userData.enrolledCourses.length}</Text>
+          </View>
         </View>
       </View>
+       
+      <View className="flex-row mt-[15px] justify-center space-x-4 mb-4">
+        <View className="bg-custom-card-blue flex-row items-center px-3 py-5 rounded-lg w-[45%] ">
+          <View className="flex-row items-center">
+            <Ionicons name="school-outline" size={25} color="white" />
+            <View className="h-[45px] mx-[10px] w-[2px] bg-white "></View>
+          </View>
+          <View className="flex ml-[10px] justify-center items-center">
+            <Text className="text-gray-400 font-bold text-[14px] mb-[2px]">Recent SGPA</Text>
+            <Text className="text-white text-[32px] font-bold ">{getRecentSemesterGPA()}</Text>
+          </View>
+        </View>
 
-      <View className="w-[100%] mt-[18px] mb-[45px] flex flex-row justify-center space-x-2">
-        <View className="bg-blue-950 p-3 rounded-2xl w-[45%]">
-          <Text className="text-sm text-gray-300 font-bold">Recent SGPA:</Text>
-          <Text className="text-blue-100 font-extrabold ml-[15px] text-[50px]">{getRecentSemesterGPA()}</Text>
+        <View className="bg-custom-card-blue flex-row items-center py-5 px-3 rounded-lg w-[45%] ">
+          <View className="flex-row items-center">
+            <MaterialIcons name="grade" size={25} color="white" />
+            <View className="h-[45px] mx-[10px] w-[2px] bg-white "></View>
+          </View>
+          <View className="flex ml-[25px] justify-center items-center">
+            <Text className="text-gray-400 font-bold text-[14px] mb-[2px]">Grade</Text>
+            <Text className="text-white text-[32px] font-bold ">{calculateCGPA()}</Text>
+          </View>
         </View>
-        <View className="bg-blue-900 p-3 rounded-2xl w-[45%]">
-          <Text className="text-sm text-gray-300 font-bold">Current CGPA:</Text>
-          <Text className="text-blue-200 font-extrabold ml-[15px] text-[50px]">{calculateCGPA()}</Text>
-        </View>
-      </View>
+      </View> 
+ 
     </ScrollView>
   );
 };

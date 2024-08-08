@@ -72,9 +72,9 @@ const MarksOfSubject = () => {
 
                     <Text className="text-xl font-bold text-white underline my-4">Grading Criteria</Text>
                     <View className="flex-row bg-blue-500 py-2 rounded-t-lg">
-                            <Text className="flex-1 w-[170px] text-center text-white font-bold">Assesment Name</Text>
-                            <Text className="flex-1 text-center text-white font-bold">Decided Weightage</Text>
-                         </View>
+                        <Text className="flex-1 w-[170px] text-center text-white font-bold">Assesment Name</Text>
+                        <Text className="flex-1 text-center text-white font-bold">Decided Weightage</Text>
+                    </View>
                     <FlatList
                         data={selectedCourseMarks.criteriaDefined}
                         keyExtractor={(item, index) => index.toString()}
