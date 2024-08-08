@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
 const MarksOfSubject = () => {
@@ -16,120 +16,53 @@ const MarksOfSubject = () => {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>"{courseName}" Marks</Text>
-
-            {selectedCourseMarks ? (
+        <View className="flex-1 p-4 bg-custom-blue">
+           {selectedCourseMarks ? (
                 <View>
-                    <Text style={styles.subTitle}>Grading Criteria</Text>
+                    <Text className="text-xl font-bold text-white underline my-4">Grading Criteria</Text>
                     <FlatList
                         data={selectedCourseMarks.criteriaDefined}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item, index }) => (
-                            <View style={styles.criteriaItem}>
-                                <Text style={styles.criteriaText}>{index + 1}</Text>
-                                <Text style={styles.criteriaText}>{item.assessment}</Text>
-                                <Text style={styles.criteriaText}>{item.weightage}%</Text>
+                            <View className="flex-row justify-between bg-blue-900 rounded-md py-[10px] border-b border-gray-500">
+                                <Text className="text-white font-medium text-center flex-1">{item.assessment}</Text>
+                                <Text className="text-white font-extrabold text-center flex-1">{item.weightage}%</Text>
                             </View>
                         )}
                     />
 
-                    <Text style={styles.subTitle}>Obtained Marks</Text>
+                    <Text className="text-xl font-bold text-white my-4">Obtained Marks</Text>
                     <FlatList
                         data={selectedCourseMarks.criteriaDefined}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }) => (
-                            <View style={styles.marksItem}>
-                                <Text style={styles.marksText}>{item.assessment}</Text>
-                                <Text style={styles.marksText}>{selectedCourseMarks.studentMarks[item.assessment]}</Text>
-                                <Text style={styles.marksText}>{item.totalMarks}</Text>
-                                <Text style={styles.marksText}>
+                            <View className="flex-row justify-between py-2 border-b border-gray-700">
+                                <Text className="text-white text-center flex-1">{item.assessment}</Text>
+                                <Text className="text-white text-center flex-1">{selectedCourseMarks.studentMarks[item.assessment]}</Text>
+                                <Text className="text-white text-center flex-1">{item.totalMarks}</Text>
+                                <Text className="text-white text-center flex-1">
                                     {((selectedCourseMarks.studentMarks[item.assessment] / item.totalMarks) * item.weightage).toFixed(2)}
                                 </Text>
                             </View>
                         )}
                     />
 
-                    <View style={styles.summaryContainer}>
-                        <View style={styles.summaryItem}>
-                            <Text style={styles.summaryText}>
-
-                                Total Weighted Marks:
-                            </Text>
-                            <Text style={styles.summaryText}>{calculateTotalWeightedMarks()}</Text>
+                    <View className="mt-5">
+                        <View className="flex-row justify-between py-3 border-b border-gray-700">
+                            <Text className="text-white text-center flex-1">Total Weighted Marks:</Text>
+                            <Text className="text-white text-center flex-1">{calculateTotalWeightedMarks()}</Text>
                         </View>
-                        <View style={styles.summaryItem}>
-                            <Text style={styles.summaryText}>
-                                Grade:
-                            </Text>
-                            <Text style={styles.summaryText}>{selectedCourseMarks.grade}</Text>
+                        <View className="flex-row justify-between py-3 border-b border-gray-700">
+                            <Text className="text-white text-center flex-1">Grade:</Text>
+                            <Text className="text-white text-center flex-1">{selectedCourseMarks.grade}</Text>
                         </View>
                     </View>
                 </View>
             ) : (
-                <Text style={styles.error}>{errorMessage || 'No marks data available.'}</Text>
+                <Text className="text-red-500 text-center mt-5">{errorMessage || 'No marks data available.'}</Text>
             )}
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 10,
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginVertical: 12,
-    },
-    subTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginVertical: 10,
-    },
-    criteriaItem: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingVertical: 5,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
-    },
-    criteriaText: {
-        flex: 1,
-        textAlign: 'center',
-    },
-    marksItem: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingVertical: 5,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
-    },
-    marksText: {
-        flex: 1,
-        textAlign: 'center',
-    },
-    summaryContainer: {
-        marginTop: 20,
-    },
-    summaryItem: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingVertical: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
-    },
-    summaryText: {
-        flex: 1,
-        textAlign: 'center',
-    },
-    error: {
-        color: 'red',
-        textAlign: 'center',
-        marginTop: 20,
-    },
-});
 
 export default MarksOfSubject;

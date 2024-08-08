@@ -78,16 +78,16 @@ const CustomDrawerContent = (props) => {
       <TouchableOpacity onPress={() => props.navigation.navigate('Courses')} className="flex-row items-center py-2 px-4">
         <Feather name="book" size={20} color="#E5E7EB" />
         <Text className="text-gray-200 ml-6 text-lg font-medium">Courses</Text>
+      </TouchableOpacity>      
+
+      <TouchableOpacity onPress={() => props.navigation.navigate('Attendance')} className="flex-row items-center py-2 px-4">
+        <Feather name="check-circle" size={20} color="#E5E7EB" />
+        <Text className="text-gray-200 ml-6 text-lg font-medium">Attendance</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => props.navigation.navigate('Marks')} className="flex-row items-center py-2 px-4">
         <Feather name="bar-chart" size={20} color="#E5E7EB" />
         <Text className="text-gray-200 ml-6 text-lg font-medium">Marks</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => props.navigation.navigate('Attendance')} className="flex-row items-center py-2 px-4">
-        <Feather name="check-circle" size={20} color="#E5E7EB" />
-        <Text className="text-gray-200 ml-6 text-lg font-medium">Attendance</Text>
       </TouchableOpacity>
 
       <View className="w-[90%] mx-auto h-[2px] bg-blue-800 mt-[8px] mb-[12px]" />

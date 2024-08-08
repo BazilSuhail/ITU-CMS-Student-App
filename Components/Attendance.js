@@ -12,7 +12,10 @@ const Attendance = () => {
             <Stack.Screen
                 name="CheckAttendance"
                 component={CheckAttendance}
-                options={{ title: 'Check Attendance' }}
+                options={{
+                    title: 'View Marks',
+                    headerShown: false // Hide the header for this screen
+                }}
             />
             <Stack.Screen
                 name="StudentAttendanceDetails"

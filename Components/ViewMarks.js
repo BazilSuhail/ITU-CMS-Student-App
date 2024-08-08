@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, ActivityIndicator, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { auth, fs } from '../Config/Config';
 
@@ -112,87 +112,46 @@ const ViewMarks = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Student's Marks</Text>
+    <View className="flex-1 bg-custom-blue p-4">
+
+      <Text className="text-2xl text-white font-bold">Marks</Text>
+      <View className="h-[2px] mt-[10px] w-[100%] mx-auto bg-gray-500 mb-[18px] rounded-xl"></View>
+
       {loading ? (
-        <ActivityIndicator size="large" color="#0000ff" style={styles.loader} />
+        <ActivityIndicator size="large" color="#0000ff" className="flex-1 justify-center items-center" />
       ) : error ? (
-        <Text style={styles.error}>Error: {error}</Text>
+        <Text className="text-red-500 text-center my-4">{`Error: ${error}`}</Text>
       ) : currentCourses.length > 0 ? (
         <FlatList
           data={currentCourses}
           keyExtractor={item => item.assignCourseId}
           renderItem={({ item }) => (
-            <View style={styles.courseCard}>
-              <Text style={styles.courseName}>{item.courseName}</Text>
-              <View style={styles.detailsContainer}>
-                <Text style={styles.detailText}>{item.instructorName}</Text>
-                <Text style={styles.detailText}>{item.creditHours}</Text>
+            <View className="bg-blue-950 p-4 rounded-lg mb-3">
+              <Text className="text-lg font-bold text-white">{item.courseName}</Text>
+
+              <View className="flex-row justify-between items-center mt-2">
+                <Text className="text-gray-500 text-[16px]  underline ">{item.instructorName}</Text>
+                <View className="flex-row">
+                  <Text className="text-white "> Credit.Hrs: </Text>
+                  <Text className="font-extrabold bg-white px-[6px] ml-[4px] text-blue-950 rounded-md ">{item.creditHours}</Text>
+                </View>
               </View>
-              <Text style={styles.detailText}>{item.className}</Text>
-              <TouchableOpacity onPress={() => handleViewMarks(item)} style={styles.button}>
-                <Text style={styles.buttonText}>View Marks</Text>
+
+              <Text className="text-gray-400 fomt-bold mt-[12px] ">{item.className}</Text>
+              <TouchableOpacity
+                onPress={() => handleViewMarks(item)}
+                className="bg-blue-700 p-2 rounded-lg mt-3"
+              >
+                <Text className="text-white font-bold text-center">View Marks</Text>
               </TouchableOpacity>
             </View>
           )}
         />
       ) : (
-        <Text style={styles.error}>No enrolled courses found.</Text>
+        <Text className="text-red-500 text-center my-4">No enrolled courses found.</Text>
       )}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 12,
-  },
-  loader: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  error: {
-    color: 'red',
-    textAlign: 'center',
-    marginVertical: 15,
-  },
-  courseCard: {
-    backgroundColor: '#007bff',
-    borderRadius: 8,
-    padding: 15,
-    marginVertical: 5,
-  },
-  courseName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  detailsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  detailText: {
-    color: '#fff',
-  },
-  button: {
-    backgroundColor: '#0056b3',
-    padding: 10,
-    borderRadius: 8,
-    marginTop: 10,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-});
 
 export default ViewMarks;

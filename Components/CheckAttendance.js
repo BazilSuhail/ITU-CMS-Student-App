@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, ActivityIndicator, StyleSheet, FlatList } from 'react-native';
+import { View, Text, Button, ActivityIndicator, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { auth, fs } from '../Config/Config';
 
@@ -67,21 +67,22 @@ const CheckAttendance = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Student's Attendance</Text>
+    <View className="flex-1 p-4"> 
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : error ? (
-        <Text style={styles.error}>Error: {error}</Text>
+        <Text className="text-red-500 text-center my-4">
+          Error: {error}
+        </Text>
       ) : (
         <FlatList
           data={enrolledCourses}
           keyExtractor={(item) => item.assignCourseId}
           renderItem={({ item }) => (
-            <View style={styles.courseItem}>
-              <Text style={styles.courseName}>{item.courseName}</Text>
-              <Text style={styles.className}>{item.className}</Text>
-              <Text style={styles.instructorName}>{item.instructorName}</Text>
+            <View className="mb-4">
+              <Text className="text-lg font-bold">{item.courseName}</Text>
+              <Text className="text-base">{item.className}</Text>
+              <Text className="text-base mb-2">{item.instructorName}</Text>
               <Button
                 title="View Attendance"
                 onPress={() => handleViewAttendance(item.assignCourseId)}
@@ -93,37 +94,5 @@ const CheckAttendance = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 16,
-  },
-  error: {
-    color: 'red',
-    textAlign: 'center',
-    marginVertical: 16,
-  },
-  courseItem: {
-    marginBottom: 16,
-  },
-  courseName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  className: {
-    fontSize: 16,
-  },
-  instructorName: {
-    fontSize: 16,
-    marginBottom: 8,
-  },
-});
 
 export default CheckAttendance;

@@ -3,47 +3,27 @@ import { View, Text, TouchableOpacity, FlatList, ActivityIndicator, ScrollView }
 import { fs, auth } from '../Config/Config'; // Ensure this path is correct
 import { Ionicons } from '@expo/vector-icons'; // For icons
 
-const CourseTable = ({ coursesData, type }) => {
+const CourseTable = ({ coursesData }) => {
   const renderItem = ({ item }) => (
-    <View className="flex-row py-2 border-b border-gray-200">
-      <Text className="flex-1 text-center px-2">{item.courseName}</Text>
-      {type !== 'Completed' && (
-        <>
-          <Text className="flex-1 text-center px-2">{item.instructorName}</Text>
-          <Text className="flex-1 text-center px-2">{item.className}</Text>
-        </>
-      )}
-      {type === 'Completed' && (
-        <>
-          <Text className="flex-1 text-center px-2">{item.code}</Text>
-          <Text className="flex-1 text-center px-2">{item.creditHours}</Text>
-          <Text className="flex-1 text-center px-2">{item.expectedSemester}</Text>
-        </>
-      )}
+    <View className="flex-row py-2 rounded-b-lg bg-blue-950 text-white">
+      <Text className="w-[170px] font-semibold text-white px-2">{item.courseName}</Text>
+      <Text className="text-center w-[90px] font-medium underline my-auto text-white px-2">{item.code}</Text>
+      <Text className="text-center w-[90px] mx-[15px] font-bold my-auto h-[22px] bg-white rounded-lg text-blue-950">{item.creditHours}</Text>
+      <Text className="text-center w-[90px] font-medium my-auto text-white px-2">{item.expectedSemester}</Text>
     </View>
   );
   const memoizedData = useMemo(() => coursesData, [coursesData]);
 
   return (
-    <ScrollView horizontal className="bg-white rounded-lg p-4 shadow-md">
-      <View>
-        <Text className="text-lg font-bold mb-2">{type} Courses</Text>
-        <View className="flex-row bg-blue-500 py-2 rounded-t-lg mb-2">
-          <Text className="flex-1 text-center text-white font-bold">Course Name</Text>
-          {type !== 'Completed' && (
-            <>
-              <Text className="flex-1 text-center text-white font-bold">Instructor</Text>
-              <Text className="flex-1 text-center text-white font-bold">Class Name</Text>
-            </>
-          )}
-          {type === 'Completed' && (
-            <>
-              <Text className="flex-1 text-center text-white font-bold">Crs.Code</Text>
-              <Text className="flex-1 text-center text-white font-bold">Credit.Hrs</Text>
-              <Text className="flex-1 text-center text-white font-bold">Semester</Text>
-            </>
-          )}
+    <ScrollView horizontal className="mx-[7px] mt-[18px]">
+      <View > 
+        <View className="flex-row bg-blue-500 py-2 rounded-t-lg">
+          <Text className="flex-1 w-[170px] text-center text-white font-bold">Course Name</Text>
+          <Text className="flex-1 text-center w-[90px] text-white font-bold">Crs.Code</Text>
+          <Text className="flex-1 text-center w-[90px] text-white font-bold">Credit.Hrs</Text>
+          <Text className="flex-1 text-center w-[90px] text-white font-bold">Semester</Text>
         </View>
+
         <FlatList
           data={memoizedData}
           renderItem={renderItem}
@@ -55,12 +35,35 @@ const CourseTable = ({ coursesData, type }) => {
   );
 };
 
+const DisplayCourses = ({ coursesData }) => {
+  const renderItem = ({ item }) => (
+    <View className="flex bg-blue-950 rounded-lg py-[16px] mt-[18px] px-[12px] w-full">
+      <Text className="font-medium text-xl text-white">{item.courseName}</Text>
+      <View className="flex-row mt-[7px] justify-between">
+        <Text className="font-medium text-gray-200">{item.instructorName}</Text>
+        <Text className="font-medium text-gray-400">{item.className}</Text>
+      </View>
+    </View>
+  );
+  const memoizedData = useMemo(() => coursesData, [coursesData]);
+
+  return (
+    <View className="mx-[7px]">
+      <FlatList
+        data={memoizedData}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.assignCourseId || item.courseName}
+      />
+    </View>
+  );
+};
+
 const ShowCourses = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [completedCourses, setCompletedCourses] = useState([]);
   const [currentCourses, setCurrentCourses] = useState([]);
-  const [showCompletedCourses, setShowCompletedCourses] = useState(true);
+  const [showCompletedCourses, setShowCompletedCourses] = useState(false);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -149,25 +152,25 @@ const ShowCourses = () => {
   }, []);
 
   // Use useMemo to optimize performance
-  const completedCoursesMemo = useMemo(() => completedCourses, [completedCourses]);
   const currentCoursesMemo = useMemo(() => currentCourses, [currentCourses]);
+  const completedCoursesMemo = useMemo(() => completedCourses, [completedCourses]);
 
   return (
-    <View className="flex-1 p-4 bg-gray-100">
-      <View className="flex-row justify-around mb-4">
+    <View className="flex-1 py-2 bg-custom-blue">
+      <View className="flex-row mt-[12px] px-[5px] justify-between space-x-2 mb-4">
         <TouchableOpacity
-          className={`flex-row items-center p-3 rounded-lg w-40 ${!showCompletedCourses ? 'bg-blue-500' : 'bg-gray-500'}`}
+          className={`flex p-3 rounded-lg w-[46%] ${!showCompletedCourses ? 'bg-blue-900' : 'bg-gray-700'}`}
           onPress={() => setShowCompletedCourses(false)}
         >
-          <Ionicons name="school-outline" size={24} color="white" />
-          <Text className="text-white ml-2 text-lg">Current Courses</Text>
+          <Ionicons name="school-outline" size={36} color="white" />
+          <Text className="text-white text-[18px] font-bold mt-[5px]">Current Courses</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          className={`flex-row items-center p-3 rounded-lg w-40 ${showCompletedCourses ? 'bg-blue-500' : 'bg-gray-500'}`}
+          className={`flex p-3 rounded-lg w-[50%] ${showCompletedCourses ? 'bg-blue-900' : 'bg-gray-700'}`}
           onPress={() => setShowCompletedCourses(true)}
         >
-          <Ionicons name="checkmark-done-outline" size={24} color="white" />
-          <Text className="text-white ml-2 text-lg">Completed Courses</Text>
+          <Ionicons name="checkmark-done-outline" size={36} color="white" />
+          <Text className="text-white  text-[18px] mt-[5px] font-bold">Completed Courses</Text>
         </TouchableOpacity>
       </View>
 
@@ -176,9 +179,9 @@ const ShowCourses = () => {
       ) : error ? (
         <Text className="text-red-500 text-center text-lg">Error: {error}</Text>
       ) : !showCompletedCourses ? (
-        <CourseTable coursesData={currentCoursesMemo} type="Current" />
+        <DisplayCourses coursesData={currentCoursesMemo} />
       ) : (
-        <CourseTable coursesData={completedCoursesMemo} type="Completed" />
+        <CourseTable coursesData={completedCoursesMemo} />
       )}
     </View>
   );
