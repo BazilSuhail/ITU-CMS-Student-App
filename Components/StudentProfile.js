@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useContext} from 'react';
 import { View, Text, ActivityIndicator, Image, ScrollView } from 'react-native';
-import { auth, fs } from '../Config/Config'; // Adjust the path as needed
+import { auth, fs } from '../Config/Config';
+
+import { ThemeContext } from '../Context/ThemeContext';
 
 const StudentProfile = () => {
     const [userData, setUserData] = useState(null);
@@ -8,6 +10,8 @@ const StudentProfile = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+
+    const { darkMode } = useContext(ThemeContext);
     useEffect(() => {
         const fetchUserData = async () => {
             setLoading(true);
@@ -77,7 +81,7 @@ const StudentProfile = () => {
     }
 
     return (
-        <ScrollView className="flex-1 bg-custom-blue p-1 py-4">
+        <ScrollView className={`flex-1 ${darkMode ? 'bg-gray-200' : 'bg-custom-blue'} p-1 py-4`}>
 
             <View className="flex justify-center pl-[5px]">
                 <Image
@@ -85,8 +89,8 @@ const StudentProfile = () => {
                     className="w-[160px] h-[160px] rounded-full"
                 />
                 <View className="">
-                    <Text className="text-white text-4xl font-bold mt-4">{userData.name}</Text>
-                    <Text className="text-gray-200 underline ml-[5px] pt-[5px] font-medium text-sm">{userData.email}</Text>
+                    <Text className={`"${darkMode ? 'text-white' : 'text-custom-blue'} text-4xl font-bold mt-4"`}>{userData.name}</Text>
+                    <Text className={`${!darkMode ? 'text-gray-200' : 'text-blue-950'} underline ml-[5px] pt-[5px] font-medium text-sm`}>{userData.email}</Text>
                 </View>
             </View>
 

@@ -1,24 +1,22 @@
 // navigation/DrawerNavigator.js
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext,useState } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { View, Text, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Feather, FontAwesome } from '@expo/vector-icons'; // For icons
-import { auth, fs, useFirebaseAuth } from './Config/Config'; // Adjust the import path as needed
-import Home from './Components/Home'; // Adjust the path as needed
-import Courses from './Components/Courses'; // Adjust the path as needed
+import { Feather, FontAwesome } from '@expo/vector-icons';
+import { auth, fs, useFirebaseAuth } from './Config/Config';
 
-import StudentProfile from './Components/StudentProfile'; // Adjust the path as needed 
+import Home from './Components/Home';
+import Courses from './Components/Courses'; 
+import StudentProfile from './Components/StudentProfile'; 
+import Attendance from './Components/Attendance';
+import Marks from './Components/Marks';
+import EnrolledCourses from './Components/EnrolledCourses';
+import WithdrawCourses from './Components/WithdrawCourses';
+import Feedback from './Components/Feedback';
 
-import Attendance from './Components/Attendance'; // Adjust the path as needed CheckAttendance
-
-import Marks from './Components/Marks'; // Adjust the path as needed CheckAttendance
-import EnrolledCourses from './Components/EnrolledCourses'; // Adjust the path as needed CheckAttendance
-import WithdrawCourses from './Components/WithdrawCourses'; // Adjust the path as needed CheckAttendance
-import Feedback from './Components/Feedback'; // Adjust the path as needed CheckAttendance
-
-
+import { ThemeContext } from './Context/ThemeContext';
 
 const Drawer = createDrawerNavigator();
 
@@ -133,6 +131,9 @@ const CustomDrawerContent = (props) => {
 };
 
 const DrawerNavigator = () => {
+
+  const { darkMode, toggleTheme } = useContext(ThemeContext);
+
   const [profile, setProfile] = useState(null);
   const { currentUser } = useFirebaseAuth();
 
@@ -175,17 +176,37 @@ const DrawerNavigator = () => {
           </View>
         ),
         headerRight: () => (
-          profile ? (
-            <Image
-              source={{ uri: profile.profileUrl }}
-              style={{ width: 30, height: 30, borderRadius: 15, marginRight: 10 }}
-            />
-          ) : (
-            <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#3B82F6', marginRight: 10, justifyContent: 'center', alignItems: 'center' }}>
-              <ActivityIndicator size="small" color="#FFFFFF" />
-            </View>
-          )
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TouchableOpacity
+              onPress={toggleTheme}
+              style={{ marginRight: 15 }}
+            >
+              <Feather name={darkMode ? 'sun' : 'moon'} size={24} color="#FFF" />
+            </TouchableOpacity>
+
+            {profile ? (
+              <Image
+                source={{ uri: profile.profileUrl }}
+                style={{ width: 30, height: 30, borderRadius: 15, marginRight: 10 }}
+              />
+            ) : (
+              <View
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderRadius: 15,
+                  backgroundColor: '#3B82F6',
+                  marginRight: 10,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <ActivityIndicator size="small" color="#FFFFFF" />
+              </View>
+            )}
+          </View>
         ),
+
         headerTitle: () => (
           <Text style={{ color: '#FFFFFF', fontSize: 18 }}>
           </Text>
@@ -204,7 +225,7 @@ const DrawerNavigator = () => {
 
       <Drawer.Screen name="Enrollment" component={EnrolledCourses} />
       <Drawer.Screen name="Withdraw" component={WithdrawCourses} />
-      
+
       <Drawer.Screen name="Feedback" component={Feedback} />
 
     </Drawer.Navigator>

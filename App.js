@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { ActivityIndicator, View } from 'react-native';
 import DrawerNavigator from './AppNavigator';
 import SignIn from './Components/Signin';
+import { ThemeProvider } from './Context/ThemeContext';
 import { useFirebaseAuth } from './Config/Config';
 
 const App = () => {
@@ -27,9 +28,12 @@ const App = () => {
   }
 
   return (
-    <NavigationContainer>
-      {isAuthenticated ? <DrawerNavigator /> : <SignIn />}
-    </NavigationContainer>
+
+    <ThemeProvider>
+      <NavigationContainer>
+        {isAuthenticated ? <DrawerNavigator /> : <SignIn />}
+      </NavigationContainer>
+    </ThemeProvider>
   );
 };
 
