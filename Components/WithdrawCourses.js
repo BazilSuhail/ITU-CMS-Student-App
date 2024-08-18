@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { auth, fs, FieldValue } from '../Config/Config';
-
+import { ThemeContext } from '../Context/ThemeContext';
 const WithdrawCourses = () => {
     const [loading, setLoading] = useState(true);
     const [currentCoursesData, setCurrentCoursesData] = useState([]);
     const [withdrawCoursesData, setWithdrawCoursesData] = useState([]);
+    const { darkMode } = useContext(ThemeContext);
 
     useEffect(() => {
         const fetchCourses = async () => {
@@ -111,65 +112,81 @@ const WithdrawCourses = () => {
     };
 
     const renderCourseItem = (item) => (
-        <View key={item.assignCourseId} className="bg-blue-900 p-4 rounded-lg mb-3">
-            <Text className="text-lg font-bold text-white">{item.courseName}</Text>
+        <View key={item.assignCourseId} className={`p-4 rounded-lg mb-3 ${darkMode ? 'bg-gray-800' : 'bg-blue-900'}`} >
+            <Text className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-white'}`}>
+                {item.courseName}
+            </Text>
 
             <View className="flex-row justify-between items-center mt-2">
-                <Text className="text-gray-400 text-[16px] underline">{item.instructorName}</Text>
+                <Text className={`text-${darkMode ? 'gray-300' : 'gray-400'} text-[16px] underline`}>
+                    {item.instructorName}
+                </Text>
                 <View className="flex-row">
-                    <Text className="text-white">Credit.Hrs:</Text>
-                    <Text className="font-extrabold bg-white px-[6px] ml-[4px] text-blue-950 rounded-md">{item.courseHours}</Text>
+                    <Text className={`${darkMode ? 'text-gray-200' : 'text-white'}`}>
+                        Credit.Hrs:
+                    </Text>
+                    <Text className={`font-extrabold ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-blue-950'} px-[6px] ml-[4px] rounded-md`}>
+                        {item.courseHours}
+                    </Text>
                 </View>
             </View>
 
-            <Text className="text-gray-200 font-bold mt-[12px]">{item.className}</Text>
+            <Text className={`text-${darkMode ? 'gray-400' : 'gray-200'} font-bold mt-[12px]`}>
+                {item.className}
+            </Text>
 
-            <TouchableOpacity onPress={() => handleWithdraw(item.assignCourseId)} className="bg-blue-950 py-3 rounded-lg mt-3">
-                <Text className="text-white font-bold text-center">Withdraw Course</Text>
+            <TouchableOpacity onPress={() => handleWithdraw(item.assignCourseId)} className={`py-3 rounded-lg mt-3 ${darkMode ? 'bg-gray-700' : 'bg-blue-950'}`}>
+                <Text className={`font-bold text-center ${darkMode ? 'text-white' : 'text-white'}`}>
+                    Withdraw Course
+                </Text>
             </TouchableOpacity>
         </View>
     );
 
     if (loading) {
         return (
-            <View className="flex justify-center items-center h-screen  bg-custom-blue p-4">
-                <ActivityIndicator size="large" color="#007bff" />
+            <View className={`flex justify-center items-center h-screen ${darkMode ? 'bg-gray-300' : 'bg-custom-blue'} p-4`}>
+                <ActivityIndicator size="large" color={darkMode ? "#0056b3" : "#007bff"} />
             </View>
         );
     }
 
     return (
-        <ScrollView className="flex bg-custom-blue p-4">
-            <Text className="text-2xl text-white font-bold">Marks</Text>
-            <View className="h-[2px] mt-[10px] w-[100%] mx-auto bg-gray-500 mb-[18px] rounded-xl"></View>
-
-            <Text className="text-xl font-bold text-white my-4">Courses Enrolled</Text>
+        <ScrollView className={`flex ${darkMode ? 'bg-gray-200' : 'bg-gray-900'} p-4`}>
+             
+            <Text className={`text-xl font-bold ${darkMode ? 'text-black' : 'text-white'} my-4`}>Courses Enrolled</Text>
             {currentCoursesData.length > 0 ? (
                 currentCoursesData.map(course => renderCourseItem(course))
             ) : (
-                <Text className="text-red-300 p-3 border-2 border-red-200 rounded-lg text-center my-4">No current courses found.</Text>
+                <Text className={`text-${darkMode ? 'red-500' : 'red-400'} p-3 border-2 border-${darkMode ? 'red-500' : 'red-400'} rounded-lg text-center my-4`}>
+                    No current courses found.
+                </Text>
             )}
 
             <View className="mb-[35px]">
-                <Text className="text-xl font-bold text-white my-4">Courses Applied For Withdraw</Text>
+                <Text className={`text-xl font-bold ${darkMode ? 'text-black' : 'text-white'} mb-2`}>Courses Applied For Withdraw</Text>
+                <View className={`h-[2px] mt-[10px] w-[100%] mx-auto ${darkMode ? 'bg-gray-300' : 'bg-gray-700'} mb-[18px] rounded-xl`}></View>
+
                 {withdrawCoursesData.length > 0 ? (
                     withdrawCoursesData.map(course => (
-                        <View key={course.assignCourseId} className="bg-blue-950 p-4 rounded-lg mb-3">
-                            <Text className="text-lg font-bold text-white">{course.courseName}</Text>
+                        <View key={course.assignCourseId} className={`p-4 rounded-lg mb-3 ${darkMode ? 'bg-white' : 'bg-blue-900'}`}>
+                            <Text className={`text-lg font-bold ${darkMode ? 'text-black' : 'text-white'}`}>{course.courseName}</Text>
 
                             <View className="flex-row justify-between items-center mt-2">
-                                <Text className="text-gray-400 text-[16px] underline">{course.instructorName}</Text>
+                                <Text className={`text-${darkMode ? 'gray-600' : 'gray-400'} text-[16px] underline`}>{course.instructorName}</Text>
                                 <View className="flex-row">
-                                    <Text className="text-white">Credit.Hrs:</Text>
-                                    <Text className="font-extrabold bg-white px-[6px] ml-[4px] text-blue-950 rounded-md">{course.courseHours}</Text>
+                                    <Text className={`${darkMode ? 'text-black' : 'text-white'}`}>Credit.Hrs:</Text>
+                                    <Text className={`font-extrabold ${darkMode ? 'bg-gray-200 text-black' : 'bg-gray-700 text-white'} px-[6px] ml-[4px] rounded-md`}>{course.courseHours}</Text>
                                 </View>
                             </View>
 
-                            <Text className="text-gray-200 font-bold mt-[12px]">{course.className}</Text>
+                            <Text className={`text-${darkMode ? 'gray-600' : 'gray-400'} font-bold mt-[12px]`}>{course.className}</Text>
                         </View>
                     ))
                 ) : (
-                    <Text className="text-red-300 p-3 border-2 border-red-200 rounded-lg text-center my-4">No courses applied for withdraw.</Text>
+                    <Text className={`text-${darkMode ? 'red-500' : 'red-400'} p-3 border-2 border-${darkMode ? 'red-500' : 'red-400'} rounded-lg text-center my-4`}>
+                        No courses applied for withdraw.
+                    </Text>
                 )}
             </View>
         </ScrollView>

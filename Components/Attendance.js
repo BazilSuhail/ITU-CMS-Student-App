@@ -24,9 +24,9 @@ const Attendance = () => {
                 options={({ route }) => ({
                     title: route.params?.courseName || 'Attendance Detials', // Fallback title
                     headerStyle: {
-                        backgroundColor: darkMode ? '#ced4da' : '#001433', // Custom background color for this screen
+                        backgroundColor: darkMode ? '#ced4da' : '#001433', 
                     },
-                    headerTintColor:  darkMode ? '#212529' : '#FFFFFF', // Custom text color for this screen
+                    headerTintColor:  darkMode ? '#212529' : '#FFFFFF',
                 })}
             />
         </Stack.Navigator>

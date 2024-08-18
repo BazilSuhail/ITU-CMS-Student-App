@@ -1,11 +1,14 @@
-import React from 'react';
+
+import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import ViewMarks from './ViewMarks';
 import MarksOfSubject from './MarksOfSubject';
+import { ThemeContext } from '../Context/ThemeContext';
 
 const Stack = createStackNavigator();
 
 const Marks = () => {
+    const { darkMode } = useContext(ThemeContext);
     return (
         <Stack.Navigator initialRouteName="ViewMarks">
             <Stack.Screen
@@ -22,9 +25,9 @@ const Marks = () => {
                 options={({ route }) => ({
                     title: route.params?.courseName || 'Marks Of Subject', // Fallback title
                     headerStyle: {
-                        backgroundColor: '#001433', // Custom background color for this screen
+                        backgroundColor: darkMode ? '#ced4da' : '#001433', 
                     },
-                    headerTintColor: '#FFFFFF', // Custom text color for this screen
+                    headerTintColor:  darkMode ? '#212529' : '#FFFFFF',
                 })}
             />
         </Stack.Navigator>

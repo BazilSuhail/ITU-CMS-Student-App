@@ -71,8 +71,8 @@ const CheckAttendance = () => {
 
   return (
     <View className={`flex-1 ${darkMode ? 'bg-gray-200' : 'bg-custom-blue'} p-4`}>
-      <Text className={`text-2xl ${darkMode ? 'text-black' : 'text-white'} font-bold`}>Attendance Details</Text>
-      <View className={`h-[2px] mt-[10px] w-[100%] mx-auto ${darkMode ? 'bg-gray-300' : 'bg-gray-600'} mb-[18px] rounded-xl`}></View>
+      <Text className={`text-2xl ${darkMode ? 'text-black' : 'text-white'} font-bold`}>Attendance</Text>
+      <View className={`h-[2px] mt-[10px] w-[100%] mx-auto ${darkMode ? 'bg-gray-700' : 'bg-gray-600'} mb-[18px] rounded-xl`}></View>
 
       {loading ? (
         <View className={`flex justify-center items-center h-screen ${darkMode ? 'bg-gray-200' : 'bg-custom-blue'} p-4`}>
@@ -95,7 +95,7 @@ const CheckAttendance = () => {
                 <Text className={`text-${darkMode ? 'gray-600' : 'gray-300'} text-[16px] underline`}>{item.instructorName}</Text>
                 <View className="flex-row">
                   <Text className={`text-${darkMode ? 'black' : 'white'}`}> Credit.Hrs: </Text>
-                  <Text className={`font-extrabold ${darkMode ? 'bg-blue-950 text-white' : 'bg-white text-blue-950'} px-[6px] ml-[4px] rounded-md`}>
+                  <Text className={`font-extrabold ${darkMode ? 'bg-gray-500 text-white' : 'bg-white text-blue-950'} px-[6px] ml-[4px] rounded-md`}>
                     {item.courseHours}
                   </Text>
                 </View>
@@ -104,7 +104,7 @@ const CheckAttendance = () => {
               <Text className={`text-${darkMode ? 'gray-800' : 'gray-300'} font-bold mt-[12px]`}>{item.className}</Text>
               <TouchableOpacity
                 onPress={() => handleViewAttendance(item.assignCourseId)}
-                className={`p-2 rounded-lg mt-3 ${darkMode ? 'bg-blue-900' : 'bg-blue-950'}`}
+                className={`p-2 rounded-lg mt-3 ${darkMode ? 'bg-gray-600' : 'bg-blue-950'}`}
               >
                 <Text className={`text-white font-bold text-center`}>View Attendance</Text>
               </TouchableOpacity>

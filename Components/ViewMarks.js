@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { View, Text, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { auth, fs } from '../Config/Config';
+import { ThemeContext } from '../Context/ThemeContext';
 
 const ViewMarks = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentCourses, setCurrentCourses] = useState([]);
   const navigation = useNavigation();
+  const { darkMode } = useContext(ThemeContext);
 
   useEffect(() => {
     const fetchEnrolledCourses = async () => {
@@ -112,37 +114,37 @@ const ViewMarks = () => {
   };
 
   return (
-    <View className="flex-1 bg-custom-blue p-4">
-
-      <Text className="text-2xl text-white font-bold">Marks</Text>
-      <View className="h-[2px] mt-[10px] w-[100%] mx-auto bg-gray-500 mb-[18px] rounded-xl"></View>
+    <View className={`flex-1 ${darkMode ? 'bg-gray-300' : 'bg-custom-blue'} p-4`}>
+      <Text className={`text-2xl ${darkMode ? 'text-gray-800' : 'text-white'} font-bold`}>Marks</Text>
+      <View className={`h-[2px] mt-[10px] w-[100%] mx-auto ${darkMode ? 'bg-gray-700' : 'bg-gray-500'} mb-[18px] rounded-xl`}></View>
 
       {loading ? (
-        <View className="flex justify-center items-center h-screen  bg-custom-blue p-4">
-          <ActivityIndicator size="large" color="#007bff" />
+        <View className={`flex justify-center items-center h-screen ${darkMode ? 'bg-gray-300' : 'bg-custom-blue'} p-4`}>
+          <ActivityIndicator size="large" color={darkMode ? "#0056b3" : "#007bff"} />
         </View>
       ) : error ? (
-        <Text className="text-red-500 text-center my-4">{`Error: ${error}`}</Text>
+        <Text className={`text-${darkMode ? 'red-400' : 'red-500'} text-center my-4`}>{`Error: ${error}`}</Text>
       ) : currentCourses.length > 0 ? (
         <FlatList
-          data={currentCourses}
+              data={currentCourses}
+              showsVerticalScrollIndicator={false}
           keyExtractor={item => item.assignCourseId}
           renderItem={({ item }) => (
-            <View className="bg-blue-950 p-4 rounded-lg mb-3">
-              <Text className="text-lg font-bold text-white">{item.courseName}</Text>
+            <View className={`bg-${darkMode ? 'white' : 'blue-950'} p-4 rounded-lg mb-3`}>
+              <Text className={`text-lg font-bold ${darkMode ? 'text-gray-700' : 'text-white'}`}>{item.courseName}</Text>
 
               <View className="flex-row justify-between items-center mt-2">
-                <Text className="text-gray-500 text-[16px]  underline ">{item.instructorName}</Text>
+                <Text className={`text-${darkMode ? 'gray-700' : 'gray-500'} text-[16px] underline`}>{item.instructorName}</Text>
                 <View className="flex-row">
-                  <Text className="text-white "> Credit.Hrs: </Text>
-                  <Text className="font-extrabold bg-white px-[6px] ml-[4px] text-blue-950 rounded-md ">{item.creditHours}</Text>
+                  <Text className={`text-${darkMode ? 'gray-600' : 'white'}`}> Credit.Hrs: </Text>
+                  <Text className={`font-extrabold ${darkMode ? 'bg-gray-500 text-white' : 'bg-white text-blue-950'} px-[6px] ml-[4px] rounded-md`}>{item.creditHours}</Text>
                 </View>
               </View>
 
-              <Text className="text-gray-400 fomt-bold mt-[12px] ">{item.className}</Text>
+              <Text className={`text-${darkMode ? 'gray-700' : 'gray-400'} font-bold mt-[12px]`}>{item.className}</Text>
               <TouchableOpacity
                 onPress={() => handleViewMarks(item)}
-                className="bg-blue-700 p-2 rounded-lg mt-3"
+                className={`p-2 rounded-lg mt-3 ${darkMode ? 'bg-gray-600' : 'bg-blue-700'}`}
               >
                 <Text className="text-white font-bold text-center">View Marks</Text>
               </TouchableOpacity>
@@ -150,7 +152,7 @@ const ViewMarks = () => {
           )}
         />
       ) : (
-        <Text className="text-red-500 text-center my-4">No enrolled courses found.</Text>
+        <Text className={`text-${darkMode ? 'red-400' : 'red-500'} text-center my-4`}>No enrolled courses found.</Text>
       )}
     </View>
   );
