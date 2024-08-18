@@ -128,8 +128,8 @@ const CustomDrawerContent = (props) => {
         }
       }}
     >
-      <Feather name="log-out" size={20} color={darkMode ? "#FFFFFF" : "#FFFFFF"} />
-      <Text className={`${darkMode ? 'text-gray-600' : 'text-white'} ml-2 text-lg font-medium`}>Logout</Text>
+      <Feather name="log-out" size={20} color= "#FFFFFF"/>
+      <Text className='text-white ml-2 text-lg font-medium'>Logout</Text>
     </TouchableOpacity>
   
   </View>
