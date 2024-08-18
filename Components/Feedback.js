@@ -1,14 +1,17 @@
-import React from 'react';
-import { View, Text } from 'react-native'; 
+import React, { useContext } from 'react';
+import { ThemeContext } from '../Context/ThemeContext';
+import { View, Text } from 'react-native';
 
-const Feedback = () => { 
+const Feedback = () => {
+  const { darkMode } = useContext(ThemeContext);
 
   return (
-      <View className="flex h-screen  bg-custom-blue p-4"> 
-          <Text className="text-red-400 bg-blue-950  mt-[35px] text-lg py-2 px-4 border-2 text-center border-red-600 rounded-lg ">
-              Feedback for Courses is not Opened Yet
-          </Text>
-            </View>
+    <View className={`flex h-screen p-4 ${darkMode ? 'bg-white' : 'bg-custom-blue'}`}>
+      <Text className={`mt-[35px] text-lg py-2 px-4 border-2 text-center  rounded-lg ${darkMode ? 'text-red-600  font-medium bg-red-100 border-red-700' : 'text-red-100 bg-red-700  border-red-200'}`}>
+        Feedback for Courses is {darkMode ? 'Opened Now' : 'not Opened Yet'}
+      </Text>
+    </View>
+
   );
 };
 

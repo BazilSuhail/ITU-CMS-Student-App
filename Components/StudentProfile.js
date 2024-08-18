@@ -181,7 +181,7 @@ const StudentProfile = () => {
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
-                        <View className="bg-gray-700 p-3 rounded-2xl w-full">
+                        <View className={` ${darkMode ? ' bg-gray-400' : 'bg-gray-650'} p-3 rounded-2xl w-full`}>
                             <Text className="text-sm text-gray-300 mb-[7px] font-bold">Permanent Address:</Text>
                             <Text className="text-white font-semibold text-lg">{userData.permanentAddress}</Text>
                         </View>

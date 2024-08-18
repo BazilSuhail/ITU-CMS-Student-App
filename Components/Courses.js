@@ -182,7 +182,7 @@ const ShowCourses = () => {
               ? 'bg-gray-700'
               : 'bg-blue-900'
             : darkMode
-              ? 'bg-gray-500'
+              ? 'bg-gray-400'
               : 'bg-gray-700'}`}
           onPress={() => setShowCompletedCourses(false)}
         >
@@ -196,7 +196,7 @@ const ShowCourses = () => {
               ? 'bg-gray-700'
               : 'bg-blue-900'
             : darkMode
-              ? 'bg-gray-500'
+              ? 'bg-gray-400'
               : 'bg-gray-700'}`}
           onPress={() => setShowCompletedCourses(true)}
         >

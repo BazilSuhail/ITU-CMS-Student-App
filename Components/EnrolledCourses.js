@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, Button, ActivityIndicator, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import { auth, fs } from '../Config/Config'; // Ensure to configure Firebase properly
-
+import { ThemeContext } from '../Context/ThemeContext';
 const EnrolledCourses = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -9,6 +9,7 @@ const EnrolledCourses = () => {
   const [courses, setCourses] = useState([]);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
   const [completedCourses, setCompletedCourses] = useState([]);
+  const { darkMode } = useContext(ThemeContext);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -92,10 +93,9 @@ const EnrolledCourses = () => {
   const filteredCourses = courses.filter(course => !completedCourses.includes(course.courseName));
 
   return (
-    <View className="flex-1 p-4 bg-custom-blue ">
-
-      <Text className="text-2xl text-white font-bold">Available Courses</Text>
-      <View className="h-[2px] mt-[10px] w-[100%] mx-auto bg-gray-500 mb-[18px] rounded-xl"></View>
+    <View className={`flex-1 p-4 ${darkMode ? 'bg-gray-200' : 'bg-custom-blue'}`}>
+      <Text className={`text-2xl font-bold ${darkMode ? 'text-gray-700' : 'text-white'}`}>Available Courses</Text>
+      <View className={`h-[2px] mt-[10px] w-[100%] mx-auto ${darkMode ? 'bg-gray-700' : 'bg-gray-500'} mb-[18px] rounded-xl`}></View>
 
       {loading ? (
         <View className="flex-1 justify-center items-center">
@@ -107,30 +107,30 @@ const EnrolledCourses = () => {
         <ScrollView horizontal showsHorizontalScrollIndicator={false} className="mx-[7px] mt-[18px]">
           <View>
             {/* Header Row */}
-            <View className="flex-row bg-blue-500 py-2 rounded-t-lg">
-              <Text className="flex-1 w-[170px] text-center text-white font-bold">Course Name</Text>
-              <Text className="flex-1 text-center w-[90px] text-white font-bold">Class_id</Text>
-              <Text className="flex-1 text-center w-[150px] text-white font-bold">Instructor Name</Text>
-              <Text className="flex-1 text-center w-[130px] text-white font-bold">Action</Text>
+            <View className={`flex-row ${darkMode ? 'bg-gray-700' : 'bg-blue-500'} py-2 rounded-t-lg`}>
+              <Text className={`flex-1 w-[170px] text-center font-bold ${darkMode ? 'text-gray-300' : 'text-white'}`}>Course Name</Text>
+              <Text className={`flex-1 w-[90px] text-center font-bold ${darkMode ? 'text-gray-300' : 'text-white'}`}>Class_id</Text>
+              <Text className={`flex-1 w-[150px] text-center font-bold ${darkMode ? 'text-gray-300' : 'text-white'}`}>Instructor Name</Text>
+              <Text className={`flex-1 w-[130px] text-center font-bold ${darkMode ? 'text-gray-300' : 'text-white'}`}>Action</Text>
             </View>
 
             {/* Course Details */}
             <View>
               {filteredCourses.map((item) => (
-                <View key={item.id} className="flex-row border-b bg-blue-950 border-gray-600 py-2 px-4">
-                  <Text className="text-center w-[150px] font-bold my-auto text-white px-2">{item.courseName}</Text>
-                  <Text className="text-center w-[80px] mx-[15px] font-bold my-auto h-[22px] bg-blue-100 rounded-lg text-blue-950">{item.className}</Text>
-                  <Text className="text-center w-[140px] font-semibold my-auto text-white px-2">{item.instructorName}</Text>
-                  <View className="text-center w-[120px] font-medium my-auto text-white px-2">
+                <View key={item.id} className={`flex-row border-b ${darkMode ? 'bg-white border-gray-700' : 'bg-blue-950 border-gray-600'} py-2 px-4`}>
+                  <Text className={`text-center w-[150px] font-bold my-auto ${darkMode ? 'text-gray-700' : 'text-white'}  px-2`}>{item.courseName}</Text>
+                  <Text className={`text-center w-[80px] mx-[15px] pt-[3px] font-bold my-auto h-[26px] ${darkMode ? 'bg-gray-300 text-gray-800' : 'bg-blue-100 text-blue-950'} rounded-lg`}>{item.className}</Text>
+                  <Text className={`text-center w-[140px] font-semibold my-auto ${darkMode ? 'text-gray-700' : 'text-white'} px-2`}>{item.instructorName}</Text>
+                  <View className="text-center w-[120px] font-medium my-auto px-2">
                     {enrolledCourses.includes(item.id) ? (
-                      <TouchableOpacity className="bg-gray-200 p-2 rounded-md" >
-                        <Text className="text-gray-400 font-bold text-center">Applied</Text>
+                      <TouchableOpacity className={`p-2 rounded-md ${darkMode ? 'bg-gray-400' : 'bg-gray-200'}`}>
+                        <Text className={`font-bold text-center ${darkMode ? 'text-gray-white' : 'text-gray-400'}`}>Applied</Text>
                       </TouchableOpacity>
                     ) : (
                       <TouchableOpacity onPress={() => handleEnroll(item.id)}
-                        className="bg-blue-700 p-2 rounded-lg"
+                        className={`p-2 rounded-lg ${darkMode ? 'bg-blue-800' : 'bg-blue-700'}`}
                       >
-                        <Text className="text-white font-bold text-center">Enroll</Text>
+                        <Text className={`font-bold text-center ${darkMode ? 'text-gray-200' : 'text-white'}`}>Enroll</Text>
                       </TouchableOpacity>
                     )}
                   </View>

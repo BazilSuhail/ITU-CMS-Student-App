@@ -112,20 +112,20 @@ const WithdrawCourses = () => {
     };
 
     const renderCourseItem = (item) => (
-        <View key={item.assignCourseId} className={`p-4 rounded-lg mb-3 ${darkMode ? 'bg-gray-800' : 'bg-blue-900'}`} >
-            <Text className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-white'}`}>
+        <View key={item.assignCourseId} className={`p-4 rounded-lg mb-3 ${darkMode ? 'bg-white' : 'bg-blue-900'}`} >
+            <Text className={`text-lg font-bold ${darkMode ? 'text-gray-700' : 'text-white'}`}>
                 {item.courseName}
             </Text>
 
             <View className="flex-row justify-between items-center mt-2">
-                <Text className={`text-${darkMode ? 'gray-300' : 'gray-400'} text-[16px] underline`}>
+                <Text className={`text-${darkMode ? 'gray-700' : 'gray-400'} text-[16px] underline`}>
                     {item.instructorName}
                 </Text>
                 <View className="flex-row">
-                    <Text className={`${darkMode ? 'text-gray-200' : 'text-white'}`}>
+                    <Text className={`${darkMode ? 'text-gray-800' : 'text-white'}`}>
                         Credit.Hrs:
                     </Text>
-                    <Text className={`font-extrabold ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-blue-950'} px-[6px] ml-[4px] rounded-md`}>
+                    <Text className={`font-extrabold ${darkMode ? 'bg-gray-600 text-white' : 'bg-white text-blue-950'} px-[6px] ml-[4px] rounded-md`}>
                         {item.courseHours}
                     </Text>
                 </View>
@@ -135,7 +135,7 @@ const WithdrawCourses = () => {
                 {item.className}
             </Text>
 
-            <TouchableOpacity onPress={() => handleWithdraw(item.assignCourseId)} className={`py-3 rounded-lg mt-3 ${darkMode ? 'bg-gray-700' : 'bg-blue-950'}`}>
+            <TouchableOpacity onPress={() => handleWithdraw(item.assignCourseId)} className={`py-3 rounded-lg mt-3 ${darkMode ? 'bg-gray-600' : 'bg-blue-950'}`}>
                 <Text className={`font-bold text-center ${darkMode ? 'text-white' : 'text-white'}`}>
                     Withdraw Course
                 </Text>
@@ -165,22 +165,22 @@ const WithdrawCourses = () => {
 
             <View className="mb-[35px]">
                 <Text className={`text-xl font-bold ${darkMode ? 'text-black' : 'text-white'} mb-2`}>Courses Applied For Withdraw</Text>
-                <View className={`h-[2px] mt-[10px] w-[100%] mx-auto ${darkMode ? 'bg-gray-300' : 'bg-gray-700'} mb-[18px] rounded-xl`}></View>
+                <View className={`h-[2px] mt-[10px] w-[100%] mx-auto ${darkMode ? 'bg-gray-600' : 'bg-gray-500'} mb-[18px] rounded-xl`}></View>
 
                 {withdrawCoursesData.length > 0 ? (
                     withdrawCoursesData.map(course => (
-                        <View key={course.assignCourseId} className={`p-4 rounded-lg mb-3 ${darkMode ? 'bg-white' : 'bg-blue-900'}`}>
-                            <Text className={`text-lg font-bold ${darkMode ? 'text-black' : 'text-white'}`}>{course.courseName}</Text>
+                        <View key={course.assignCourseId} className={`p-4 rounded-lg mb-3 ${darkMode ? 'bg-gray-600' : 'bg-blue-900'}`}>
+                            <Text className={`text-lg font-bold ${darkMode ? 'text-gray-50' : 'text-white'}`}>{course.courseName}</Text>
 
                             <View className="flex-row justify-between items-center mt-2">
-                                <Text className={`text-${darkMode ? 'gray-600' : 'gray-400'} text-[16px] underline`}>{course.instructorName}</Text>
+                                <Text className={`text-${darkMode ? 'gray-100' : 'gray-400'} text-[16px] underline`}>{course.instructorName}</Text>
                                 <View className="flex-row">
-                                    <Text className={`${darkMode ? 'text-black' : 'text-white'}`}>Credit.Hrs:</Text>
+                                    <Text className={`${darkMode ? 'text-gray-300' : 'text-white'}`}>Credit.Hrs:</Text>
                                     <Text className={`font-extrabold ${darkMode ? 'bg-gray-200 text-black' : 'bg-gray-700 text-white'} px-[6px] ml-[4px] rounded-md`}>{course.courseHours}</Text>
                                 </View>
                             </View>
 
-                            <Text className={`text-${darkMode ? 'gray-600' : 'gray-400'} font-bold mt-[12px]`}>{course.className}</Text>
+                            <Text className={`text-${darkMode ? 'gray-200' : 'gray-400'} font-bold mt-[12px]`}>{course.className}</Text>
                         </View>
                     ))
                 ) : (
