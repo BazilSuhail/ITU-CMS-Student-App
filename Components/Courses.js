@@ -1,24 +1,34 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import { View, Text, TouchableOpacity, FlatList, ActivityIndicator, ScrollView } from 'react-native';
-import { fs, auth } from '../Config/Config'; // Ensure this path is correct
-import { Ionicons } from '@expo/vector-icons'; // For icons
+import { fs, auth } from '../Config/Config';
+import { Ionicons } from '@expo/vector-icons';
+import { ThemeContext } from '../Context/ThemeContext';
 
 const CourseTable = ({ coursesData }) => {
+  const { darkMode } = useContext(ThemeContext);
   const renderItem = ({ item }) => (
-    <View className="flex-row py-2 rounded-b-lg bg-blue-950 text-white">
-      <Text className="w-[170px] font-semibold text-white px-2">{item.courseName}</Text>
-      <Text className="text-center w-[90px] font-medium underline my-auto text-white px-2">{item.code}</Text>
-      <Text className="text-center w-[90px] mx-[15px] font-bold my-auto h-[22px] bg-white rounded-lg text-blue-950">{item.creditHours}</Text>
-      <Text className="text-center w-[90px] font-medium my-auto text-white px-2">{item.expectedSemester}</Text>
+    <View className={`flex-row py-2  ${darkMode ? 'bg-white' : 'bg-blue-950'}`}>
+      <Text className={`w-[200px] font-semibold px-2 ${darkMode ? 'text-gray-500' : 'text-white'}`}>
+        {item.courseName}
+      </Text>
+      <Text className={`text-center w-[90px] font-medium underline my-auto px-2 ${darkMode ? 'text-gray-500' : 'text-white'}`}>
+        {item.code}
+      </Text>
+      <Text className={`text-center w-[90px] mx-[15px] font-bold my-auto h-[22px] rounded-lg ${darkMode ? 'bg-gray-200 text-gray-700' : 'bg-white text-blue-950'}`}>
+        {item.creditHours}
+      </Text>
+      <Text className={`text-center w-[90px] font-medium my-auto px-2 ${darkMode ? 'text-gray-500' : 'text-white'}`}>
+        {item.expectedSemester}
+      </Text>
     </View>
   );
   const memoizedData = useMemo(() => coursesData, [coursesData]);
 
   return (
     <ScrollView horizontal className="mx-[7px] mt-[18px]">
-      <View > 
-        <View className="flex-row bg-blue-500 py-2 rounded-t-lg">
-          <Text className="flex-1 w-[170px] text-center text-white font-bold">Course Name</Text>
+      <View >
+        <View className={`flex-row  ${darkMode ? 'bg-gray-700' : 'bg-blue-500'} py-2 rounded-t-lg`}>
+          <Text className="flex-1 w-[200px] text-center text-white font-bold">Course Name</Text>
           <Text className="flex-1 text-center w-[90px] text-white font-bold">Crs.Code</Text>
           <Text className="flex-1 text-center w-[90px] text-white font-bold">Credit.Hrs</Text>
           <Text className="flex-1 text-center w-[90px] text-white font-bold">Semester</Text>
@@ -36,12 +46,19 @@ const CourseTable = ({ coursesData }) => {
 };
 
 const DisplayCourses = ({ coursesData }) => {
+  const { darkMode } = useContext(ThemeContext);
   const renderItem = ({ item }) => (
-    <View className="flex bg-blue-950 rounded-lg py-[16px] mt-[18px] px-[12px] w-full">
-      <Text className="font-medium text-xl text-white">{item.courseName}</Text>
+    <View className={`flex rounded-lg py-[16px] mt-[18px] px-[12px] w-full ${darkMode ? 'bg-white' : 'bg-blue-950'}`}>
+     <Text className={`font-medium text-xl ${darkMode ? 'text-gray-900' : 'text-gray-100'}`}>
+        {item.courseName}
+      </Text>
       <View className="flex-row mt-[7px] justify-between">
-        <Text className="font-medium text-gray-200">{item.instructorName}</Text>
-        <Text className="font-medium text-gray-400">{item.className}</Text>
+        <Text className={`font-medium ${darkMode ? 'text-gray-600' : 'text-gray-400'}`}>
+          {item.instructorName}
+        </Text>
+        <Text className={`font-medium ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+          {item.className}
+        </Text>
       </View>
     </View>
   );
@@ -64,6 +81,7 @@ const ShowCourses = () => {
   const [completedCourses, setCompletedCourses] = useState([]);
   const [currentCourses, setCurrentCourses] = useState([]);
   const [showCompletedCourses, setShowCompletedCourses] = useState(false);
+  const { darkMode } = useContext(ThemeContext);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -156,21 +174,34 @@ const ShowCourses = () => {
   const completedCoursesMemo = useMemo(() => completedCourses, [completedCourses]);
 
   return (
-    <View className="flex-1 py-2 bg-custom-blue">
+    <View className={`flex-1 py-2 ${darkMode ? 'bg-gray-200' : 'bg-custom-blue'}`}>
       <View className="flex-row mt-[12px] px-[5px] justify-between space-x-2 mb-4">
         <TouchableOpacity
-          className={`flex p-3 rounded-lg w-[46%] ${!showCompletedCourses ? 'bg-blue-900' : 'bg-gray-700'}`}
+          className={`flex p-3 rounded-lg w-[46%] ${!showCompletedCourses
+            ? darkMode
+              ? 'bg-gray-700'
+              : 'bg-blue-900'
+            : darkMode
+              ? 'bg-gray-500'
+              : 'bg-gray-700'}`}
           onPress={() => setShowCompletedCourses(false)}
         >
           <Ionicons name="school-outline" size={36} color="white" />
-          <Text className="text-white text-[18px] font-bold mt-[5px]">Current Courses</Text>
+          <Text className={`text-[18px] font-bold mt-[5px] ${darkMode ? 'text-white' : 'text-gray-100'}`}>Current Courses</Text>
         </TouchableOpacity>
+
         <TouchableOpacity
-          className={`flex p-3 rounded-lg w-[50%] ${showCompletedCourses ? 'bg-blue-900' : 'bg-gray-700'}`}
+          className={`flex p-3 rounded-lg w-[50%] ${showCompletedCourses
+            ? darkMode
+              ? 'bg-gray-700'
+              : 'bg-blue-900'
+            : darkMode
+              ? 'bg-gray-500'
+              : 'bg-gray-700'}`}
           onPress={() => setShowCompletedCourses(true)}
         >
           <Ionicons name="checkmark-done-outline" size={36} color="white" />
-          <Text className="text-white  text-[18px] mt-[5px] font-bold">Completed Courses</Text>
+          <Text className={`text-[18px] font-bold mt-[5px] ${darkMode ? 'text-white' : 'text-gray-100'}`}>Completed Courses</Text>
         </TouchableOpacity>
       </View>
 

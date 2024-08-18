@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, ActivityIndicator, Image, ScrollView } from 'react-native';
 import { auth, fs } from '../Config/Config';
 
@@ -9,9 +9,8 @@ const StudentProfile = () => {
     const [className, setClassName] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-
     const { darkMode } = useContext(ThemeContext);
+    
     useEffect(() => {
         const fetchUserData = async () => {
             setLoading(true);
@@ -55,7 +54,7 @@ const StudentProfile = () => {
 
     if (loading) {
         return (
-            
+
             <View className="flex justify-center items-center h-screen  bg-custom-blue p-4">
                 <ActivityIndicator size="large" color="#007bff" />
             </View>
@@ -89,90 +88,88 @@ const StudentProfile = () => {
                     className="w-[160px] h-[160px] rounded-full"
                 />
                 <View className="">
-                    <Text className={`"${darkMode ? 'text-white' : 'text-custom-blue'} text-4xl font-bold mt-4"`}>{userData.name}</Text>
-                    <Text className={`${!darkMode ? 'text-gray-200' : 'text-blue-950'} underline ml-[5px] pt-[5px] font-medium text-sm`}>{userData.email}</Text>
+                    <Text className={`${darkMode ? 'text-custom-blue' : 'text-white'} text-4xl font-bold mt-4`}>{userData.name}</Text>
+                    <Text className={`${darkMode ? 'text-blue-950' : 'text-gray-200'} underline ml-[5px] pt-[5px] font-medium text-sm`}>{userData.email}</Text>
                 </View>
             </View>
 
             <View className="h-[2px] mt-[25px] w-[90%] mx-auto bg-gray-500 mb-[25px] rounded-xl"></View>
 
             <View className="py-[4px] mb-5">
-                <Text className="underline text-gray-200 py-2 ml-[5px] text-xl font-bold rounded-lg">
+                <Text className={`underline ${!darkMode ? 'text-gray-200' : 'text-blue-950'} py-2 ml-[5px] text-xl font-bold rounded-lg`}>
                     Academic Information:
                 </Text>
                 <View className="flex flex-wrap  mt-2">
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
-                        <View className="bg-blue-950 p-3 rounded-2xl w-[48%]">
+                        <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
                             <Text className="text-sm text-gray-400 mb-[7px] font-bold">Rollnumber:</Text>
-                            <Text className="text-blue-100 font-semibold text-xl">{userData.rollNumber}</Text>
+                            <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.rollNumber}</Text>
                         </View>
-                        <View className="bg-blue-950 p-3 rounded-2xl w-[48%]">
+                        <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
                             <Text className="text-sm text-gray-400 mb-[7px] font-bold">Batch:</Text>
-                            <Text className="text-blue-100 font-semibold text-2xl">{userData.batch}</Text>
+                            <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.batch}</Text>
                         </View>
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
-                        <View className="bg-blue-950 p-3 rounded-2xl w-[48%]">
+                        <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
                             <Text className="text-sm text-gray-400 mb-[7px] font-bold">Semester:</Text>
-                            <Text className="text-blue-100 font-semibold text-2xl">{userData.semester}</Text>
+                            <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.semester}</Text>
                         </View>
-                        <View className="bg-blue-950 p-3 rounded-2xl w-[48%]">
+                        <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
                             <Text className="text-sm text-gray-400 mb-[7px] font-bold">Class:</Text>
-                            <Text className="text-blue-100 font-semibold text-2xl">{className}</Text>
+                            <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{className}</Text>
                         </View>
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
-                        <View className="bg-blue-950 p-3 rounded-2xl w-full">
+                        <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-full`}>
                             <Text className="text-sm text-gray-400 mb-[7px] font-bold">Degree Program:</Text>
-                            <Text className="text-blue-100 font-semibold text-2xl">{userData.degreeProgram}</Text>
+                            <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.degreeProgram}</Text>
                         </View>
                     </View>
                 </View>
 
-                
-            <View className="h-[2px] mt-[25px] w-[90%] mx-auto bg-gray-500 mb-[25px] rounded-xl"></View>
 
+                <View className="h-[2px] mt-[25px] w-[90%] mx-auto bg-gray-500 mb-[25px] rounded-xl"></View>
 
-                <Text className="underline text-gray-200 py-2 ml-[5px] text-xl font-bold rounded-lg">
+                <Text className={`underline ${!darkMode ? 'text-gray-200' : 'text-blue-950'} py-2 ml-[5px] text-xl font-bold rounded-lg`}>
                     Personal Information:
                 </Text>
+
                 <View className="flex flex-wrap mt-2">
+                     
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
-                        <View className="bg-blue-900 p-3 rounded-2xl w-full">
-                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Full Name:</Text>
-                            <Text className="text-white font-semibold text-2xl">{userData.name}</Text>
+                        <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
+                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Name:</Text>
+                            <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.name}</Text>
                         </View>
-                    </View>
-
-                    <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
-                        <View className="bg-blue-900 p-3 rounded-2xl w-full">
+                        <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
                             <Text className="text-sm text-gray-300 mb-[7px] font-bold">Father Name:</Text>
-                            <Text className="text-white font-semibold text-2xl">{userData.fatherName}</Text>
+                            <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.fatherName}</Text>
                         </View>
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
-                        <View className="bg-blue-900 p-3 rounded-2xl w-[48%]">
+                        <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
                             <Text className="text-sm text-gray-300 mb-[7px] font-bold">Gender:</Text>
-                            <Text className="text-white font-semibold text-xl">{userData.gender}</Text>
+                            <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.gender}</Text>
                         </View>
-                        <View className="bg-blue-900 p-3 rounded-2xl w-[48%]">
+                        <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
                             <Text className="text-sm text-gray-300 mb-[7px] font-bold">Blood Group:</Text>
-                            <Text className="text-white font-semibold text-2xl">{userData.bloodGroup}</Text>
+                            <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.bloodGroup}</Text>
                         </View>
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
-                        <View className="bg-blue-900 p-3 rounded-2xl w-[48%]">
+                        <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
                             <Text className="text-sm text-gray-300 mb-[7px] font-bold">City:</Text>
-                            <Text className="text-white font-semibold text-xl">{userData.city}</Text>
+                            <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.city}</Text>
                         </View>
-                        <View className="bg-blue-900 p-3 rounded-2xl w-[48%]">
+                        <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
                             <Text className="text-sm text-gray-300 mb-[7px] font-bold">Nationality:</Text>
-                            <Text className="text-white font-semibold text-2xl">{userData.nationality}</Text>
+                            <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.nationality}</Text>
                         </View>
                     </View>
 
