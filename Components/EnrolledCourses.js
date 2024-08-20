@@ -94,8 +94,11 @@ const EnrolledCourses = () => {
 
   return (
     <View className={`flex-1 p-4 ${darkMode ? 'bg-gray-200' : 'bg-custom-blue'}`}>
-      <Text className={`text-2xl font-bold ${darkMode ? 'text-gray-700' : 'text-white'}`}>Available Courses</Text>
-      <View className={`h-[2px] mt-[10px] w-[100%] mx-auto ${darkMode ? 'bg-gray-700' : 'bg-gray-500'} mb-[18px] rounded-xl`}></View>
+      <View className={`flex-row justify-between items-center mt-4`}>
+        <Text className={`text-2xl font-bold ${darkMode ? 'text-gray-700' : 'text-white'}`}>Available Courses</Text>
+        <Text className={`text-[22px] font-bold px-[15px] py-[-4px] rounded-lg ${darkMode ? 'bg-white' : 'bg-blue-800'} ${darkMode ? 'text-gray-700' : 'text-white'}`}>{filteredCourses.length}</Text>
+      </View>
+      <View className={`h-[2px] mt-[10px] w-[100%] mx-auto  ${darkMode ? 'bg-gray-700' : 'bg-gray-500'} mb-[18px] rounded-xl`}></View>
 
       {loading ? (
         <View className="flex-1 justify-center items-center">
@@ -118,13 +121,13 @@ const EnrolledCourses = () => {
             <View>
               {filteredCourses.map((item) => (
                 <View key={item.id} className={`flex-row border-b ${darkMode ? 'bg-white border-gray-700' : 'bg-blue-950 border-gray-600'} py-2 px-4`}>
-                  <Text className={`text-center w-[150px] font-bold my-auto ${darkMode ? 'text-gray-700' : 'text-white'}  px-2`}>{item.courseName}</Text>
-                  <Text className={`text-center w-[80px] mx-[15px] pt-[3px] font-bold my-auto h-[26px] ${darkMode ? 'bg-gray-300 text-gray-800' : 'bg-blue-100 text-blue-950'} rounded-lg`}>{item.className}</Text>
+                  <Text className={`w-[150px] font-bold my-auto ${darkMode ? 'text-gray-700' : 'text-white'}  px-2`}>{item.courseName}</Text>
+                  <Text className={`text-center w-[80px] mx-[15px] pt-[3px] font-bold my-auto h-[26px] ${darkMode ? 'bg-gray-200 text-gray-800' : 'bg-blue-100 text-blue-950'} rounded-lg`}>{item.className}</Text>
                   <Text className={`text-center w-[140px] font-semibold my-auto ${darkMode ? 'text-gray-700' : 'text-white'} px-2`}>{item.instructorName}</Text>
                   <View className="text-center w-[120px] font-medium my-auto px-2">
                     {enrolledCourses.includes(item.id) ? (
-                      <TouchableOpacity className={`p-2 rounded-md ${darkMode ? 'bg-gray-400' : 'bg-gray-200'}`}>
-                        <Text className={`font-bold text-center ${darkMode ? 'text-gray-white' : 'text-gray-400'}`}>Applied</Text>
+                      <TouchableOpacity className={`p-2 rounded-md ${darkMode ? 'bg-gray-300' : 'bg-gray-200'}`}>
+                        <Text className={`font-bold text-center ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>Applied</Text>
                       </TouchableOpacity>
                     ) : (
                       <TouchableOpacity onPress={() => handleEnroll(item.id)}

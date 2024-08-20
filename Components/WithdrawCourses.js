@@ -112,13 +112,13 @@ const WithdrawCourses = () => {
     };
 
     const renderCourseItem = (item) => (
-        <View key={item.assignCourseId} className={`p-4 rounded-lg mb-3 ${darkMode ? 'bg-white' : 'bg-blue-900'}`} >
+        <View key={item.assignCourseId} className={`p-4 rounded-lg mb-3 ${darkMode ? 'bg-white' : 'bg-blue-800'}`} >
             <Text className={`text-lg font-bold ${darkMode ? 'text-gray-700' : 'text-white'}`}>
                 {item.courseName}
             </Text>
 
             <View className="flex-row justify-between items-center mt-2">
-                <Text className={`text-${darkMode ? 'gray-700' : 'gray-400'} text-[16px] underline`}>
+                <Text className={`text-${darkMode ? 'gray-700' : 'gray-200'} text-[16px] underline`}>
                     {item.instructorName}
                 </Text>
                 <View className="flex-row">
@@ -153,8 +153,10 @@ const WithdrawCourses = () => {
 
     return (
         <ScrollView className={`flex ${darkMode ? 'bg-gray-200' : 'bg-gray-900'} p-4`}>
-             
-            <Text className={`text-xl font-bold ${darkMode ? 'text-black' : 'text-white'} my-4`}>Courses Enrolled</Text>
+            <View className={`flex-row justify-between items-center px-3 my-4  ${darkMode ? 'bg-white' : 'bg-blue-800'} rounded-lg border-2 ${darkMode ? 'border-gray-400' : 'border-blue-500'} `}>
+                <Text className={`text-[17px] font-bold ${darkMode ? 'text-gray-600' : 'text-white'} my-1`}>Courses Enrolled:</Text>
+                <Text className={`text-xl font-bold ${darkMode ? 'text-black' : 'text-white'} my-1`}>{currentCoursesData.length}</Text>
+            </View>
             {currentCoursesData.length > 0 ? (
                 currentCoursesData.map(course => renderCourseItem(course))
             ) : (
@@ -163,13 +165,17 @@ const WithdrawCourses = () => {
                 </Text>
             )}
 
+            <View className={`h-[3px] mt-[15px] ${darkMode ? 'bg-blue-900' : 'bg-gray-700'}`}></View>
+
             <View className="mb-[35px]">
-                <Text className={`text-xl font-bold ${darkMode ? 'text-black' : 'text-white'} mb-2`}>Courses Applied For Withdraw</Text>
-                <View className={`h-[2px] mt-[10px] w-[100%] mx-auto ${darkMode ? 'bg-gray-600' : 'bg-gray-500'} mb-[18px] rounded-xl`}></View>
+                <View className={`flex-row justify-between items-center px-3 my-4 bg-white rounded-lg ${darkMode ? 'bg-gray-500' : 'bg-blue-900'} `}>
+                    <Text className={`text-[17px] font-medium ${darkMode ? 'text-gray-200' : 'text-white'} my-2`}>Courses Applied For Withdraw:</Text>
+                    <Text className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-white'} my-2`}>{withdrawCoursesData.length}</Text>
+                </View>
 
                 {withdrawCoursesData.length > 0 ? (
                     withdrawCoursesData.map(course => (
-                        <View key={course.assignCourseId} className={`p-4 rounded-lg mb-3 ${darkMode ? 'bg-gray-600' : 'bg-blue-900'}`}>
+                        <View key={course.assignCourseId} className={`p-4 rounded-lg mb-3 ${darkMode ? 'bg-gray-600' : 'bg-blue-950'}`}>
                             <Text className={`text-lg font-bold ${darkMode ? 'text-gray-50' : 'text-white'}`}>{course.courseName}</Text>
 
                             <View className="flex-row justify-between items-center mt-2">

@@ -143,7 +143,7 @@ const Home = () => {
     <ScrollView className={`flex py-4 ${darkMode ? 'bg-gray-200' : 'bg-custom-blue'}`}>
       {nextClass ? (
         <View className="mx-4">
-          <Text className={`rounded-lg w-[150px] text-center mb-[15px] text-lg font-bold ${darkMode ? 'text-green-700 bg-green-100' : 'text-green-500 bg-green-950'}`}>
+          <Text className={`rounded-lg w-[150px] text-center mb-[15px] text-[16px] font-bold ${darkMode ? 'text-green-700 bg-green-100' : 'text-green-500 bg-green-950'}`}>
             Upcoming Class
           </Text>
           <View className={`shadow-xl rounded-xl py-3 px-4 ${darkMode ? 'bg-white shadow-blue-300' : 'bg-blue-900 shadow-blue-500'}`}>
@@ -155,8 +155,8 @@ const Home = () => {
             <View>
               <Text className={`font-medium ml-[2px] mt-[8px] w-[150px] underline underline-offset-8 ${darkMode ? 'text-gray-700' : 'text-gray-200'}`}>{nextClass.instructor}</Text>
             </View>
-            <View className={`rounded-md mt-[5px] w-[160px] ${darkMode ? 'bg-gray-300' : 'bg-blue-950'}`}>
-              <Text className={`py-[3px] font-bold px-[8px] ${darkMode ? 'text-black' : 'text-gray-200'}`}>
+            <View className={`rounded-md mt-[5px] w-[160px] ${darkMode ? 'bg-gray-200' : 'bg-blue-950'}`}>
+              <Text className={`py-[3px] font-bold px-[8px] ${darkMode ? 'text-gray-900' : 'text-gray-200'}`}>
                 <Text className={`font-medium ${darkMode ? 'text-gray-600' : 'text-blue-200'}`}>Venue:</Text>  {nextClass.venue}
               </Text>
             </View>
@@ -176,10 +176,10 @@ const Home = () => {
 
       {secondNextClass ? (
         <View className="mx-4">
-          <Text className={`mt-[28px] rounded-lg w-[180px] text-center mb-[8px] text-[16px] font-bold ${darkMode ? 'text-yellow-700 bg-yellow-100' : 'text-yellow-500 bg-yellow-950'}`}>
+          <Text className={`mt-[28px] rounded-lg w-[160px] py-[4px] text-center mb-[10px] text-[14px] font-bold ${darkMode ? 'text-yellow-700 bg-yellow-100' : 'text-yellow-500 bg-yellow-950'}`}>
             Next Upcoming Class
           </Text>
-          <View className={`shadow-lg rounded-xl py-3 px-4 ${darkMode ? 'bg-gray-100 border-2 border-gray-300' : 'bg-blue-950 shadow-blue-200'}`}>
+          <View className={`rounded-xl py-3 px-4 ${darkMode ? 'bg-gray-100 border-2 border-gray-300' : 'bg-blue-950'}`}>
             <View className="flex flex-row items-center justify-between">
               <Text className={`font-bold mb-[5px] text-[18px] ${darkMode ? 'text-black' : 'text-white'}`}>{secondNextClass.course}</Text>
               <AntDesign name="clockcircleo" size={22} color={darkMode ? "black" : "white"} />
@@ -188,8 +188,8 @@ const Home = () => {
             <View>
               <Text className={`font-medium ml-[2px] mt-[8px] underline underline-offset-8 ${darkMode ? 'text-gray-700' : 'text-gray-200'}`}>{secondNextClass.instructor}</Text>
             </View>
-            <View className={`rounded-md mt-[5px] w-[140px] ${darkMode ? 'bg-gray-300' : 'bg-blue-700'}`}>
-              <Text className={`py-[3px] font-bold pl-[8px] text-[12px] ${darkMode ? 'text-black' : 'text-gray-200'}`}>
+            <View className={`rounded-md mt-[5px] w-[140px] ${darkMode ? 'bg-gray-200' : 'bg-blue-700'}`}>
+              <Text className={`py-[3px] font-bold pl-[8px] text-[12px] ${darkMode ? 'text-gray-900' : 'text-gray-200'}`}>
                 <Text className={`font-medium ${darkMode ? 'text-gray-600' : 'text-blue-100'}`}>Venue:</Text> {secondNextClass.venue}
               </Text>
             </View>
@@ -213,8 +213,7 @@ const Home = () => {
       </Text>
       <View className="flex-row mx-1 justify-center space-x-4 mb-1">
         <View className={`flex-row items-center px-5 py-5 rounded-lg w-[45%] ${darkMode ? 'bg-white' : 'bg-custom-card-blue'}`}>
-          <FontAwesome5 name="calendar-alt" size={45} color={darkMode ? "#9ca3af" : "#e5e7eb"} />
-
+          <FontAwesome5 name="calendar-alt" size={45} color={darkMode ? "#9ca3af" : "#BFDBFE"} />
           <View className="flex ml-[15px] items-center">
             <Text className={`font-bold text-[10px] ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>Current Semester</Text>
             <Text className={`text-[30px] font-bold ${darkMode ? 'text-gray-600' : 'text-white'}`}>{userData.semester}</Text>
@@ -222,17 +221,17 @@ const Home = () => {
         </View>
 
         <View className={`flex-row items-center py-5 px-3 rounded-lg w-[45%] ${darkMode ? 'bg-white' : 'bg-custom-card-blue'}`}>
-          <MaterialIcons name="class" size={45} color={darkMode ? "#9ca3af" : "white"} />
+          <MaterialIcons name="class" size={45} color={darkMode ? "#9ca3af" : "#BFDBFE"} />
           <View className="flex ml-[10px] items-center">
             <Text className={`font-bold text-[12px] ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>Courses Enrolled</Text>
-            <Text className={`text-[28px] font-bold ${darkMode ? 'text-gray-600' : 'text-white'}`}>{userData.enrolledCourses.length}</Text>
+            <Text className={`text-[28px] font-bold ${darkMode ? 'text-gray-600' : 'text-blue-50'}`}>{userData.enrolledCourses.length}</Text>
           </View>
         </View>
       </View>
 
       <View className="flex-row mt-[15px] mx-1 justify-center space-x-4 mb-4">
         <View className={`flex-row items-center px-3 py-5 rounded-lg w-[45%] ${darkMode ? 'bg-white' : 'bg-custom-card-blue'}`}>
-          <Ionicons name="school-outline" size={45} color={darkMode ? "#9ca3af" : "white"} />
+          <Ionicons name="school-outline" size={45} color={darkMode ? "#9ca3af" : "#BFDBFE"} />
           <View className="flex ml-[10px] justify-center items-center">
             <Text className={`font-bold text-[14px] ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>Recent SGPA</Text>
             <Text className={`text-[32px] font-bold ${darkMode ? 'text-gray-600' : 'text-white'}`}>{getRecentSemesterGPA()}</Text>
@@ -240,7 +239,7 @@ const Home = () => {
         </View>
 
         <View className={`flex-row items-center py-5 px-3 rounded-lg w-[45%] ${darkMode ? 'bg-white' : 'bg-custom-card-blue'}`}>
-          <FontAwesome name="graduation-cap" size={42} color={darkMode ? "#9ca3af" : "white"} />
+          <FontAwesome name="graduation-cap" size={42} color={darkMode ? "#9ca3af" : "#BFDBFE"} />
           <View className="flex ml-[15px] justify-center items-center">
             <Text className={`font-bold text-[14px] ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>CGPA</Text>
             <Text className={`text-[32px] font-bold ${darkMode ? 'text-gray-600' : 'text-white'}`}>{calculateCGPA()}</Text>
@@ -251,9 +250,8 @@ const Home = () => {
       <View className={`h-[3px] mt-[25px] mx-3 ${darkMode ? 'bg-gray-400' : 'bg-blue-900'}`}></View>
 
       <View className={`p-4`}>
-        {/* Announcement Section */}
-        <View className={` ${darkMode ? 'bg-gray-400' : 'bg-blue-900'} rounded-lg mt-3 px-4 pt-5`}>
-          <Text className={`${darkMode ? 'text-gray-50' : 'text-white'} text-2xl font-bold mb-4`}>
+        <View className={` ${darkMode ? 'bg-gray-100' : 'bg-blue-900'} border-2 ${darkMode ? 'border-gray-300' : 'border-blue-900'} rounded-lg mt-3 px-4 pt-5`}>
+          <Text className={`${darkMode ? 'text-gray-600' : 'text-white'} text-2xl font-bold mb-4`}>
             Announcements
           </Text>
 
@@ -291,26 +289,28 @@ const Home = () => {
         </Text>
 
         {/* Tabular Format for Calendar */}
-        <View className={`${darkMode ? 'border-gray-300' : 'border-gray-600'} border-t border-b`}>
-          <View className={`flex-row  ${darkMode ? 'bg-gray-700' : 'bg-blue-500'} py-2 rounded-t-lg`}>
-            <Text className="flex-1 w-[30%] text-center text-white font-bold">Date</Text>
-            <Text className="flex-1 w-[70%] text-white text-center font-bold">Event </Text>
+        <View className={`${darkMode ? 'border-gray-300' : 'border-gray-600'} flex `}>
+          <View className={`flex-row justify-center ${darkMode ? 'bg-gray-700' : 'bg-blue-500'} w-full py-2 rounded-t-lg`}>
+            <Text className="w-[40%] text-center text-white font-bold">Date</Text>
+            <Text className="w-[60%] text-center text-white font-bold">Event</Text>
           </View>
+
           {academicCalendar.map((item, index) => (
             <View
               key={index}
-              className={`flex-row justify-around px-7 py-4 ${index % 2 === 0 ? (darkMode ? 'bg-white' : 'bg-blue-950') : (darkMode ? 'bg-gray-100' : 'bg-blue-900')}`}
+              className={`flex-row justify-center w-full px-3 py-3 ${index % 2 === 0 ? (darkMode ? 'bg-white' : 'bg-blue-950') : (darkMode ? 'bg-gray-100' : 'bg-blue-900')}`}
             >
-              <Text className={`${darkMode ? 'text-gray-700' : 'text-gray-300'} w-[30%] text-center font-bold text-[15px]`}>
+              <Text className={`${darkMode ? 'text-gray-700' : 'text-gray-300'} w-[40%] text-center font-bold text-[15px]`}>
                 {item.date}
               </Text>
-              <Text className={`${darkMode ? 'text-gray-600' : 'text-gray-200'} w-[70%] text-[14px] text-center`}>
+              <Text className={`${darkMode ? 'text-gray-600' : 'text-gray-200'} w-[60%] text-[14px] text-center`}>
                 {item.event}
               </Text>
             </View>
           ))}
         </View>
       </View>
+      <View className="h-[35px]"></View>
 
     </ScrollView>
 

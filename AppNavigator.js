@@ -221,7 +221,6 @@ const DrawerNavigator = () => {
         ),
         headerTitle: () => (
           <Text style={{ color: darkMode ? "#D1D5DB" : "#FFFFFF", fontSize: 18 }}>
-            {/* Your header title */}
           </Text>
         ),
         drawerContentContainerStyle: {

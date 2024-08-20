@@ -19,17 +19,20 @@ const Marks = () => {
                     headerShown: false // Hide the header for this screen
                 }}
             />
-           <Stack.Screen
+            <Stack.Screen
                 name="MarksOfSubject"
                 component={MarksOfSubject}
                 options={({ route }) => ({
                     title: route.params?.courseName || 'Marks Of Subject', // Fallback title
                     headerStyle: {
-                        backgroundColor: darkMode ? '#ced4da' : '#001433', 
+                        backgroundColor: darkMode ? '#E5E7EB' : '#001433',
+                        borderBottomWidth: 1, // Adjust the width of the border
+                        borderBottomColor: darkMode ? '#6B7280' : '#FFFFFF', // Adjust the color of the border
                     },
-                    headerTintColor:  darkMode ? '#212529' : '#FFFFFF',
+                    headerTintColor: darkMode ? '#212529' : '#FFFFFF',
                 })}
             />
+
         </Stack.Navigator>
     );
 };

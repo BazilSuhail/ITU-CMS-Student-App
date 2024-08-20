@@ -22,11 +22,13 @@ const Attendance = () => {
                 name="StudentAttendanceDetails"
                 component={StudentAttendanceDetails}
                 options={({ route }) => ({
-                    title: route.params?.courseName || 'Attendance Detials', // Fallback title
+                    title: route.params?.courseName || 'Attendance Details', // Fallback title
                     headerStyle: {
-                        backgroundColor: darkMode ? '#ced4da' : '#001433', 
+                        backgroundColor: darkMode ? '#E5E7EB' : '#001433',
+                        borderBottomWidth: 1, // Adjust the width of the border
+                        borderBottomColor: darkMode ? '#6B7280' : '#FFFFFF', // Adjust the color of the border
                     },
-                    headerTintColor:  darkMode ? '#212529' : '#FFFFFF',
+                    headerTintColor: darkMode ? '#212529' : '#FFFFFF',
                 })}
             />
         </Stack.Navigator>

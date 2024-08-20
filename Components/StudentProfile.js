@@ -172,15 +172,15 @@ const StudentProfile = () => {
                         </View>
                     </View>
 
-                    <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
-                        <View className="bg-gray-500 p-3 rounded-2xl w-full">
+                    <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">                        
+                    <View className={` ${darkMode ? ' bg-gray-500' : 'bg-blue-900'} p-3 rounded-2xl w-full`}>
                             <Text className="text-sm text-gray-300 mb-[7px] font-bold">Current Address:</Text>
                             <Text className="text-white font-semibold text-lg">{userData.currentAddress}</Text>
                         </View>
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
-                        <View className={` ${darkMode ? ' bg-gray-500' : 'bg-gray-650'} p-3 rounded-2xl w-full`}>
+                        <View className={` ${darkMode ? ' bg-gray-500' : 'bg-blue-900'} p-3 rounded-2xl w-full`}>
                             <Text className="text-sm text-gray-300 mb-[7px] font-bold">Permanent Address:</Text>
                             <Text className="text-white font-semibold text-lg">{userData.permanentAddress}</Text>
                         </View>
@@ -188,7 +188,7 @@ const StudentProfile = () => {
 
                 </View>
 
-            </View>
+            </View> 
         </ScrollView>
     );
 };

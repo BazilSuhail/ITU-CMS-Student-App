@@ -67,9 +67,11 @@ const StudentAttendanceDetails = () => {
   const attendancePercentage = totalDays > 0 ? ((daysPresent / totalDays) * 100).toFixed(2) : 0;
 
   return (
-    <View className={`flex-1 ${darkMode ? 'bg-gray-300' : 'bg-custom-blue'} p-4`}>
+    <View className={`flex-1 ${darkMode ? 'bg-gray-200' : 'bg-custom-blue'} p-4`}>
       {loading ? (
-        <ActivityIndicator size="large" color={darkMode ? "#0056b3" : "#0000ff"} />
+        <View className="flex-1 justify-center items-center">
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
       ) : error ? (
         <Text className={`text-${darkMode ? 'red-400' : 'red-500'} p-3 border-2 ${darkMode ? 'border-red-400' : 'border-red-500'} rounded-lg text-center my-4`}>
           {error}

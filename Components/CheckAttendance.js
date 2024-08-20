@@ -65,8 +65,11 @@ const CheckAttendance = () => {
     fetchEnrolledCourses();
   }, []);
 
-  const handleViewAttendance = (courseId) => {
-    navigation.navigate('StudentAttendanceDetails', { assignCourseId: courseId });
+  const handleViewAttendance = (courseId,courseName) => {
+    navigation.navigate('StudentAttendanceDetails', {
+      assignCourseId: courseId,
+      courseName: courseName
+    });
   };
 
   return (
@@ -103,7 +106,7 @@ const CheckAttendance = () => {
 
               <Text className={`text-${darkMode ? 'gray-800' : 'gray-300'} font-bold mt-[12px]`}>{item.className}</Text>
               <TouchableOpacity
-                onPress={() => handleViewAttendance(item.assignCourseId)}
+                onPress={() => handleViewAttendance(item.assignCourseId,item.courseName)}
                 className={`p-2 rounded-lg mt-3 ${darkMode ? 'bg-gray-600' : 'bg-blue-950'}`}
               >
                 <Text className={`text-white font-bold text-center`}>View Attendance</Text>
