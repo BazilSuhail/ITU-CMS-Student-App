@@ -54,8 +54,7 @@ const StudentProfile = () => {
 
     if (loading) {
         return (
-
-            <View className="flex justify-center items-center h-screen  bg-custom-blue p-4">
+            <View className={`flex justify-center items-center h-screen ${darkMode ? 'bg-gray-200' : 'bg-custom-blue'} p-4`}>
                 <ActivityIndicator size="large" color="#007bff" />
             </View>
         );
@@ -73,8 +72,8 @@ const StudentProfile = () => {
 
     if (!userData) {
         return (
-            <View className="flex-1 justify-center items-center bg-blue-950">
-                <Text className="text-white">No user data available</Text>
+            <View className={`flex-1 justify-center items-center ${darkMode ? 'bg-gray-200' : 'bg-custom-blue'}`}>
+                <Text className="text-white px-3 text-mf border-red-500 rounded-lg  py-3">No user data available</Text>
             </View>
         );
     }
@@ -174,14 +173,14 @@ const StudentProfile = () => {
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
-                        <View className="bg-gray-700 p-3 rounded-2xl w-full">
+                        <View className="bg-gray-500 p-3 rounded-2xl w-full">
                             <Text className="text-sm text-gray-300 mb-[7px] font-bold">Current Address:</Text>
                             <Text className="text-white font-semibold text-lg">{userData.currentAddress}</Text>
                         </View>
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
-                        <View className={` ${darkMode ? ' bg-gray-400' : 'bg-gray-650'} p-3 rounded-2xl w-full`}>
+                        <View className={` ${darkMode ? ' bg-gray-500' : 'bg-gray-650'} p-3 rounded-2xl w-full`}>
                             <Text className="text-sm text-gray-300 mb-[7px] font-bold">Permanent Address:</Text>
                             <Text className="text-white font-semibold text-lg">{userData.permanentAddress}</Text>
                         </View>
