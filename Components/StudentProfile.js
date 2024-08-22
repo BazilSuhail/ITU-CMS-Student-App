@@ -79,7 +79,7 @@ const StudentProfile = () => {
     }
 
     return (
-        <ScrollView className={`flex-1 ${darkMode ? 'bg-gray-200' : 'bg-custom-blue'} p-1 py-4`}>
+        <ScrollView className={`flex-1 ${darkMode ? 'bg-gray-200' : 'bg-custom-blue'} px-2 py-4`}>
 
             <View className="flex justify-center pl-[5px]">
                 <Image
@@ -102,29 +102,29 @@ const StudentProfile = () => {
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
                         <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
-                            <Text className="text-sm text-gray-400 mb-[7px] font-bold">Rollnumber:</Text>
-                            <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.rollNumber}</Text>
+                            <Text className={`text-sm ${darkMode ? ' text-gray-500' : 'text-gray-400'} mb-[7px] font-bold`}>Rollnumber:</Text>
+                            <Text className={` ${darkMode ? 'text-gray-700' : 'text-blue-100'} font-semibold text-xl `}>{userData.rollNumber}</Text>
                         </View>
                         <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
-                            <Text className="text-sm text-gray-400 mb-[7px] font-bold">Batch:</Text>
+                            <Text className={`text-sm ${darkMode ? ' text-gray-500' : 'text-gray-400'} mb-[7px] font-bold`}>Batch:</Text>
                             <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.batch}</Text>
                         </View>
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
                         <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
-                            <Text className="text-sm text-gray-400 mb-[7px] font-bold">Semester:</Text>
+                            <Text className={`text-sm ${darkMode ? ' text-gray-500' : 'text-gray-400'} mb-[7px] font-bold`}>Semester:</Text>
                             <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.semester}</Text>
                         </View>
                         <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
-                            <Text className="text-sm text-gray-400 mb-[7px] font-bold">Class:</Text>
+                            <Text className={`text-sm ${darkMode ? ' text-gray-500' : 'text-gray-400'} mb-[7px] font-bold`}>Class:</Text>
                             <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{className}</Text>
                         </View>
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
                         <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-full`}>
-                            <Text className="text-sm text-gray-400 mb-[7px] font-bold">Degree Program:</Text>
+                            <Text className={`text-sm ${darkMode ? ' text-gray-500' : 'text-gray-400'} mb-[7px] font-bold`}>Degree Program:</Text>
                             <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.degreeProgram}</Text>
                         </View>
                     </View>
@@ -141,47 +141,47 @@ const StudentProfile = () => {
                      
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
                         <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
-                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Name:</Text>
+                            <Text  className={`text-sm ${darkMode ? ' text-gray-500' : 'text-gray-300'} mb-[7px] font-bold`}>Name:</Text>
                             <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.name}</Text>
                         </View>
                         <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
-                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Father Name:</Text>
+                            <Text  className={`text-sm ${darkMode ? ' text-gray-500' : 'text-gray-300'} mb-[7px] font-bold`}>Father Name:</Text>
                             <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.fatherName}</Text>
                         </View>
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
                         <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
-                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Gender:</Text>
+                            <Text  className={`text-sm ${darkMode ? ' text-gray-500' : 'text-gray-300'} mb-[7px] font-bold`}>Gender:</Text>
                             <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.gender}</Text>
                         </View>
                         <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
-                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Blood Group:</Text>
+                            <Text  className={`text-sm ${darkMode ? ' text-gray-500' : 'text-gray-300'} mb-[7px] font-bold`}>Blood Group:</Text>
                             <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.bloodGroup}</Text>
                         </View>
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
                         <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
-                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">City:</Text>
+                            <Text  className={`text-sm ${darkMode ? ' text-gray-500' : 'text-gray-300'} mb-[7px] font-bold`}>City:</Text>
                             <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.city}</Text>
                         </View>
                         <View className={` ${darkMode ? ' bg-white' : 'bg-blue-950'} p-3 rounded-2xl w-[48%]`}>
-                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Nationality:</Text>
+                            <Text  className={`text-sm ${darkMode ? ' text-gray-500' : 'text-gray-300'} mb-[7px] font-bold`}>Nationality:</Text>
                             <Text className={` ${darkMode ? 'text-gray-500' : 'text-blue-100'} font-semibold text-xl `}>{userData.nationality}</Text>
                         </View>
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">                        
                     <View className={` ${darkMode ? ' bg-gray-500' : 'bg-blue-900'} p-3 rounded-2xl w-full`}>
-                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Current Address:</Text>
+                            <Text  className={`text-sm ${darkMode ? ' text-gray-100' : 'text-gray-300'} mb-[7px] font-bold`}>Current Address:</Text>
                             <Text className="text-white font-semibold text-lg">{userData.currentAddress}</Text>
                         </View>
                     </View>
 
                     <View className="w-[100%] mb-[15px] flex flex-row justify-center space-x-2">
                         <View className={` ${darkMode ? ' bg-gray-500' : 'bg-blue-900'} p-3 rounded-2xl w-full`}>
-                            <Text className="text-sm text-gray-300 mb-[7px] font-bold">Permanent Address:</Text>
+                            <Text className= {`text-sm ${darkMode ? ' text-gray-100' : 'text-gray-300'} mb-[7px] font-bold`}>Permanent Address:</Text>
                             <Text className="text-white font-semibold text-lg">{userData.permanentAddress}</Text>
                         </View>
                     </View>

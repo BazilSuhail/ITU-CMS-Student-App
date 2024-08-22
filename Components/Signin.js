@@ -53,7 +53,7 @@ const SignIn = () => {
       />
 
       <Animated.View style={{ width: '100%', backgroundColor: 'white', borderTopLeftRadius: 30, borderTopRightRadius: 30, paddingHorizontal: 28, flex: 1, justifyContent: 'center', marginTop: marginTopAnim }}>
-        <Text className="text-[32px] font-bold text-blue-950 mt-[-35px] mb-[25px] text-center">Sign In</Text>
+        <Text className="text-[32px] font-bold text-blue-950 mt-[-35px] mb-[25px] text-center">Student Portal</Text>
         <Text className="text-md mb-[8px] font-medium">
           LogIn with <Text className="text-blue-700 font-semibold">Provided Credidentials</Text>
        </Text>
