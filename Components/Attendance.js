@@ -15,18 +15,18 @@ const Attendance = () => {
                 component={CheckAttendance}
                 options={{
                     title: 'View Marks',
-                    headerShown: false // Hide the header for this screen
+                    headerShown: false
                 }}
             />
             <Stack.Screen
                 name="StudentAttendanceDetails"
                 component={StudentAttendanceDetails}
                 options={({ route }) => ({
-                    title: route.params?.courseName || 'Attendance Details', // Fallback title
+                    title: route.params?.courseName || 'Attendance Details', 
                     headerStyle: {
                         backgroundColor: darkMode ? '#E5E7EB' : '#001433',
-                        borderBottomWidth: 1, // Adjust the width of the border
-                        borderBottomColor: darkMode ? '#6B7280' : '#FFFFFF', // Adjust the color of the border
+                        borderBottomWidth: 1, 
+                        borderBottomColor: darkMode ? '#6B7280' : '#FFFFFF', 
                     },
                     headerTintColor: darkMode ? '#212529' : '#FFFFFF',
                 })}

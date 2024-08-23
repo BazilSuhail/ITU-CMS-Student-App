@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { auth, fs } from '../Config/Config';
-
 import { ThemeContext } from '../Context/ThemeContext';
+
 const CheckAttendance = () => {
   const navigation = useNavigation();
   const [currentUser, setCurrentUser] = useState(null);

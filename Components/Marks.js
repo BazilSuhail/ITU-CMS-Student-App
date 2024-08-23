@@ -23,11 +23,11 @@ const Marks = () => {
                 name="MarksOfSubject"
                 component={MarksOfSubject}
                 options={({ route }) => ({
-                    title: route.params?.courseName || 'Marks Of Subject', // Fallback title
+                    title: route.params?.courseName || 'Marks Of Subject', 
                     headerStyle: {
                         backgroundColor: darkMode ? '#E5E7EB' : '#001433',
-                        borderBottomWidth: 1, // Adjust the width of the border
-                        borderBottomColor: darkMode ? '#6B7280' : '#FFFFFF', // Adjust the color of the border
+                        borderBottomWidth: 1,
+                        borderBottomColor: darkMode ? '#6B7280' : '#FFFFFF',
                     },
                     headerTintColor: darkMode ? '#212529' : '#FFFFFF',
                 })}

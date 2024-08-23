@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, Button, ActivityIndicator, FlatList, TouchableOpacity, ScrollView } from 'react-native';
-import { auth, fs } from '../Config/Config'; // Ensure to configure Firebase properly
+import { View, Text, ActivityIndicator, TouchableOpacity, ScrollView } from 'react-native';
+import { auth, fs } from '../Config/Config';
 import { ThemeContext } from '../Context/ThemeContext';
 const EnrolledCourses = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -16,13 +16,10 @@ const EnrolledCourses = () => {
       setLoading(true);
       setError(null);
 
-      try {
-        // Get the current logged-in user
+      try { 
         const user = auth.currentUser;
         if (user) {
           setCurrentUser(user);
-
-          // Fetch student data to get enrolled and completed courses
           const studentDoc = await fs.collection('students').doc(user.uid).get();
           if (studentDoc.exists) {
             const studentData = studentDoc.data();

@@ -37,7 +37,7 @@ const CourseTable = ({ coursesData }) => {
         <FlatList
           data={memoizedData}
           renderItem={renderItem}
-          keyExtractor={(item) => item.assignCourseId || item.courseName} // Ensure unique key
+          keyExtractor={(item) => item.assignCourseId || item.courseName}
           className="max-h-80"
         />
       </View>

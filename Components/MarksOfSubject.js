@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons'; // For icons
+import { Ionicons } from '@expo/vector-icons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { ThemeContext } from '../Context/ThemeContext';
 

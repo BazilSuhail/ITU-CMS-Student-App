@@ -37,12 +37,4 @@ const App = () => {
 };
 
 export default App;
-
-/*
-
-    <ThemeProvider>
-      <NavigationContainer>
-        {isAuthenticated ? <DrawerNavigator /> : <SignIn />}
-      </NavigationContainer>
-    </ThemeProvider>
-*/
+ 

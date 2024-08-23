@@ -11,8 +11,7 @@ const StartupAnimation = ({ onAnimationEnd }) => {
   const textTranslateX = useRef(new Animated.Value(0)).current;
   const screenOpacity = useRef(new Animated.Value(1)).current;
 
-  useEffect(() => {
-    // Sequence of animations
+  useEffect(() => { 
     Animated.sequence([ 
       Animated.timing(logoScale, {
         toValue: 1.5,
