@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, Linking,TextInput, TouchableOpacity, Image, Keyboard, Animated } from 'react-native';
+import { View, Text, Linking, TextInput, TouchableOpacity, Image, Keyboard, Animated, ActivityIndicator } from 'react-native';
 import { auth } from '../Config/Config'; // Adjust the path as needed  
 import { MaterialIcons } from '@expo/vector-icons'; // For Expo users
 import itu from "../assets/itu.png"; 
@@ -8,6 +8,7 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const marginTopAnim = useRef(new Animated.Value(0)).current; // Initialize marginTop animation
 
@@ -35,18 +36,22 @@ const SignIn = () => {
   }, [marginTopAnim]);
 
   const handleSignIn = async () => {
+    setLoading(true);
     try {
       await auth.signInWithEmailAndPassword(email, password);
     } catch (error) {
-      setError(error.message);
+      //setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
+
   const handlePress = () => {
     Linking.openURL("https://itu-cms.netlify.app/").catch((err) => console.error('Failed to open URL:', err));
   };
 
   return (
-    <View className="flex-1  bg-custom-blue">
+    <View className="flex-1 bg-custom-blue">
       <Image
         source={itu}
         className="w-[250px] h-[250px] mx-auto mt-[80px] mb-[55px]"
@@ -55,8 +60,8 @@ const SignIn = () => {
       <Animated.View style={{ width: '100%', backgroundColor: 'white', borderTopLeftRadius: 30, borderTopRightRadius: 30, paddingHorizontal: 28, flex: 1, justifyContent: 'center', marginTop: marginTopAnim }}>
         <Text className="text-[32px] font-bold text-blue-950 mt-[-35px] mb-[25px] text-center">Student Portal</Text>
         <Text className="text-md mb-[8px] font-medium">
-          LogIn with <Text className="text-blue-700 font-semibold">Provided Credidentials</Text>
-       </Text>
+          LogIn with <Text className="text-blue-700 font-semibold">Provided Credentials</Text>
+        </Text>
         {error ? <Text className="text-red-400 mb-4">{error}</Text> : null}
 
         <View className="flex-row items-center border border-gray-400 py-2 rounded-xl px-4 mb-4">
@@ -98,14 +103,14 @@ const SignIn = () => {
           className="bg-blue-900 rounded-xl py-2"
         >
           <Text className="text-2xl text-center text-white font-bold">
-            Sign In
+            {loading ? <View className="flex-1 h-screen w-screen items-center justify-center bg-custom-blue">
+              <ActivityIndicator size="small" color="#fff" />
+            </View> : 'Sign In'}
           </Text>
         </TouchableOpacity>
         <Text className="text-center mt-[10px]">
-        <Text>  Access Portal Online via  </Text> 
- 
-         
-          <Text className="text-blue-800  underline font-bold" onPress={handlePress}>ITU | CMS-Portal</Text> 
+          <Text> Access Portal Online via </Text>
+          <Text className="text-blue-800 underline font-bold" onPress={handlePress}>ITU | CMS-Portal</Text>
         </Text>
       </Animated.View>
     </View>

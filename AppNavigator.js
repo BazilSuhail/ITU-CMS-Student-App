@@ -17,6 +17,7 @@ import WithdrawCourses from './Components/WithdrawCourses';
 import Feedback from './Components/Feedback';
 
 import { ThemeContext } from './Context/ThemeContext';
+import SignIn from './Components/Signin';
 
 const Drawer = createDrawerNavigator();
 
@@ -124,7 +125,7 @@ const CustomDrawerContent = (props) => {
           await auth.signOut();
           props.navigation.navigate('SignIn'); // Navigate to SignIn screen
         } catch (error) {
-          console.error("Logout error:", error);
+          //console.error("Logout error:", error);
         }
       }}
     >
@@ -240,6 +241,9 @@ const DrawerNavigator = () => {
       <Drawer.Screen name="Withdraw" component={WithdrawCourses} />
 
       <Drawer.Screen name="Feedback" component={Feedback} />
+
+      
+      <Drawer.Screen name="SignIn" component={SignIn} />
 
     </Drawer.Navigator>
   );
