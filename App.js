@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { ActivityIndicator, View } from 'react-native';
 import DrawerNavigator from './AppNavigator';
 import SignIn from './Components/Signin';
+import 'react-native-gesture-handler';
 import { ThemeProvider } from './Context/ThemeContext';
 import { useFirebaseAuth } from './Config/Config';
 
