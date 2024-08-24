@@ -1,7 +1,7 @@
 // navigation/DrawerNavigator.js
 import React, { useEffect, useContext,useState } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { View, Text, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ActivityIndicator,StatusBar } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Feather, FontAwesome } from '@expo/vector-icons';
@@ -164,6 +164,12 @@ const DrawerNavigator = () => {
   const firstName = profile ? profile.name.split(' ')[0] : 'User';
 
   return (
+    <>
+    {/* Set the status bar color */}
+    <StatusBar
+      backgroundColor={darkMode ? 'white' : '#172554'}
+      barStyle={darkMode ? 'dark-content' : 'light-content'}
+    />
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={({ navigation }) => ({
@@ -245,7 +251,9 @@ const DrawerNavigator = () => {
       
       <Drawer.Screen name="SignIn" component={SignIn} />
 
-    </Drawer.Navigator>
+      </Drawer.Navigator>
+      
+    </>
   );
 };
 
