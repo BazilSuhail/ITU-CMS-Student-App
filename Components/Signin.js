@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, Linking, TextInput, TouchableOpacity, Image, Keyboard, Animated, ActivityIndicator, StatusBar } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { auth } from '../Config/Config'; 
+import { auth } from '../Config/Config';
 import { MaterialIcons } from '@expo/vector-icons';
 import itu from "../assets/itu.png";
 
@@ -113,11 +113,15 @@ const SignIn = () => {
             onPress={handleSignIn}
             className="bg-blue-900 rounded-xl py-2"
           >
-            <Text className="text-2xl text-center text-white font-bold">
-              {loading ? <View className="flex-1 h-screen w-screen items-center justify-center bg-custom-blue">
+            {loading ?
+              <View className="py-2 place-content-center">
                 <ActivityIndicator size="small" color="#fff" />
-              </View> : 'Sign In'}
-            </Text>
+              </View>
+              :
+              <Text className="text-2xl text-center text-white font-bold">
+                Sign In
+              </Text>
+            }
           </TouchableOpacity>
           <Text className="text-center mt-[10px]">
             <Text> Access Portal Online via </Text>
