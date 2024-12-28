@@ -1,4 +1,4 @@
-## Student Portal (Student Managemnt MObile App for my University)
+### Student Portal (Student Managemnt MObile App for my University)
 A project that I created for up-scaling my skills from web to mobile apps. This project is a student portal (designed for my **own University** after seeing the condition of web portal they gave us) allowing stundets to manage and look there academics activities and summaries efficiently.
 <br>
 
@@ -16,7 +16,7 @@ This student portal app streamlines academic management with features like secur
  
 #### Check out the latest demo of Project [ITU-Student-Portal](https://entitysafe.netlify.app/pages/AppList/-O4swNr4Vi3X0OLPoTQy). 
 
-![App Screenshot](https://github.com/Kharbooza978/EntitySafe/blob/main/Student-App/student_app1.jpg)
+![App Screenshot](https://github.com/Kharbooza978/EntitySafe/blob/main/Student-App/student_app1.png)
 
 # Run Locally
 
@@ -41,8 +41,8 @@ Install **Expo GO** from playstore after scanning the QR code given interminal s
 Another option is to get Android Studio Installed and type **a** in terminal to open the app in android studio itself
 
 </br>
-## Features
 
+## Features
 ### **Authentication**
 - Secure login using modern authentication protocols (e.g., Firebase Auth).
 - User session management for a smooth and secure experience.
