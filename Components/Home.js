@@ -170,11 +170,11 @@ const Home = () => {
         </View>
       ) : (
         <View className="mt-5">
-          <Text className={`${darkMode ? 'text-gray-800' : 'text-gray-200'}`}>No upcoming classes found.</Text>
+          <Text className={`mx-3 font-[600] text-[14px] ${darkMode ? 'text-green-700' : 'text-green-300'}`}>* No upcoming classes found.</Text>
         </View>
       )}
 
-      {secondNextClass ? (
+      {secondNextClass && (
         <View className="mx-4">
           <Text className={`mt-[28px] rounded-lg w-[160px] py-[4px] text-center mb-[10px] text-[14px] font-bold ${darkMode ? 'text-yellow-700 bg-yellow-100' : 'text-yellow-500 bg-yellow-950'}`}>
             Next Upcoming Class
@@ -201,10 +201,6 @@ const Home = () => {
             </View>
           </View>
         </View>
-      ) : (
-        <View className="mt-5">
-          <Text className={`${darkMode ? 'text-gray-800' : 'text-gray-200'}`}>No second upcoming class found.</Text>
-        </View>
       )}
 
       <View className={`h-[3px] mt-[25px] mx-3 ${darkMode ? 'bg-gray-400' : 'bg-green-100'}`}></View>
@@ -214,35 +210,48 @@ const Home = () => {
       <View className="flex-row mx-1 justify-center space-x-4 mb-1">
         <View className={`flex-row items-center px-5 py-5 rounded-lg w-[45%] ${darkMode ? 'bg-white' : 'bg-custom-card-blue'}`}>
           <FontAwesome5 name="calendar-alt" size={45} color={darkMode ? "#9ca3af" : "#BFDBFE"} />
-          <View className="flex ml-[15px] items-center">
-            <Text className={`font-bold text-[10px] ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>Current Semester</Text>
-            <Text className={`text-[30px] font-bold ${darkMode ? 'text-gray-600' : 'text-white'}`}>{userData.semester}</Text>
+          <View className="flex ml-[15px]">
+            <Text className={`font-bold text-[11px] ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>Current Semester</Text>
+            <Text className={`text-[24px] font-bold ${darkMode ? 'text-gray-600' : 'text-white'}`}>{userData.semester}</Text>
           </View>
         </View>
 
         <View className={`flex-row items-center py-5 px-3 rounded-lg w-[45%] ${darkMode ? 'bg-white' : 'bg-custom-card-blue'}`}>
           <MaterialIcons name="class" size={45} color={darkMode ? "#9ca3af" : "#BFDBFE"} />
-          <View className="flex ml-[10px] items-center">
-            <Text className={`font-bold text-[12px] ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>Courses Enrolled</Text>
-            <Text className={`text-[28px] font-bold ${darkMode ? 'text-gray-600' : 'text-blue-50'}`}>{userData.enrolledCourses.length}</Text>
+          <View className="flex ml-[10px]">
+            <Text className={`font-bold text-[11px] ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>Courses Enrolled</Text>
+            <Text className={`text-[25px] font-bold ${darkMode ? 'text-gray-600' : 'text-blue-50'}`}>{userData.enrolledCourses.length}</Text>
           </View>
         </View>
       </View>
 
-      <View className="flex-row mt-[15px] mx-1 justify-center space-x-4 mb-4">
+      <View className="flex-row mt-[15px] overflow-x-hidden mx-1 justify-center space-x-4 mb-4">
         <View className={`flex-row items-center px-3 py-5 rounded-lg w-[45%] ${darkMode ? 'bg-white' : 'bg-custom-card-blue'}`}>
           <Ionicons name="school-outline" size={45} color={darkMode ? "#9ca3af" : "#BFDBFE"} />
-          <View className="flex ml-[10px] justify-center items-center">
-            <Text className={`font-bold text-[14px] ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>Recent SGPA</Text>
-            <Text className={`text-[32px] font-bold ${darkMode ? 'text-gray-600' : 'text-white'}`}>{getRecentSemesterGPA()}</Text>
+          <View className="flex ml-[10px]">
+            <Text className={`font-bold text-[11px] ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>Recent SGPA</Text>
+            <Text className={` ${darkMode ? 'text-gray-600' : 'text-white'}`}>
+              {getRecentSemesterGPA()=== "No recent GPA data available" ?
+               <Text className="text-[12px] mt-[1px] text-gray-500 break-words">{getRecentSemesterGPA()}</Text>
+               :
+               <Text className="text-[25px] font-bold">{getRecentSemesterGPA()}</Text>
+               }
+               </Text>
           </View>
         </View>
 
-        <View className={`flex-row items-center py-5 px-3 rounded-lg w-[45%] ${darkMode ? 'bg-white' : 'bg-custom-card-blue'}`}>
+        <View className={`flex-row items-center overflow-x-hidden py-5 px-3 rounded-lg w-[45%] ${darkMode ? 'bg-white' : 'bg-custom-card-blue'}`}>
           <FontAwesome name="graduation-cap" size={42} color={darkMode ? "#9ca3af" : "#BFDBFE"} />
-          <View className="flex ml-[15px] justify-center items-center">
-            <Text className={`font-bold text-[14px] ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>CGPA</Text>
-            <Text className={`text-[32px] font-bold ${darkMode ? 'text-gray-600' : 'text-white'}`}>{calculateCGPA()}</Text>
+          <View className="flex ml-[10px]">
+            <Text className={`font-bold text-[11px] ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>CGPA</Text>
+            {/*<Text className={`text-[32px] font-bold ${darkMode ? 'text-gray-600' : 'text-white'}`}>{calculateCGPA()}</Text>*/}
+            <Text className={` ${darkMode ? 'text-gray-600' : 'text-white'}`}>
+              {calculateCGPA()=== "No valid GPA data available" ?
+               <Text className="text-[11px] break-words">{calculateCGPA()}</Text>
+               :
+               <Text className="text-[25px] font-bold">{calculateCGPA()}</Text>
+               }
+               </Text>
           </View>
         </View>
       </View>
