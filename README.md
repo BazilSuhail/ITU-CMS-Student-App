@@ -1,4 +1,4 @@
-### Student Portal (Student Managemnt MObile App for my University)
+# Student Portal (Student Managemnt Mobile App for my University)
 A project that I created for up-scaling my skills from web to mobile apps. This project is a student portal (designed for my **own University** after seeing the condition of web portal they gave us) allowing stundets to manage and look there academics activities and summaries efficiently.
 <br>
 
